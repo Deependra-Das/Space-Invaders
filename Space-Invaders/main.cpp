@@ -30,6 +30,31 @@ int main()
         // Clear the window
         window.clear(sf::Color::White);
 
+        // Draw a circle
+        sf::CircleShape circle(100); // Radius 50
+        circle.setFillColor(sf::Color::Green);
+        circle.setPosition(window.getSize().x / 2 - circle.getRadius(), window.getSize().y / 2 - circle.getRadius());
+        window.draw(circle);
+
+        // Draw a Rectangle
+        sf::RectangleShape rectangle(sf::Vector2f(200, 200));
+        rectangle.setFillColor(sf::Color::Red);
+        rectangle.setPosition(50, 50);
+        window.draw(rectangle);
+
+
+        // Draw a Triangle
+        sf::ConvexShape triangle;
+        triangle.setPointCount(3);
+        triangle.setFillColor(sf::Color::Blue);
+
+        // define the points
+        triangle.setPoint(0, sf::Vector2f(500, 50));
+        triangle.setPoint(1, sf::Vector2f(750, 200));
+        triangle.setPoint(2, sf::Vector2f(500, 200));
+        window.draw(triangle);
+
+
         // Display whatever you draw
         window.display();
     }
