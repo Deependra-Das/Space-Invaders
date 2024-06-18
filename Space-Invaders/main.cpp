@@ -8,8 +8,8 @@ class Player
 
     // Private Data Members
     int health = 3;
-    sf::Vector2f position = sf::Vector2f(200.0f, 100.0f);
-    int movement_speed = 5;
+    sf::Vector2f position = sf::Vector2f(350.0f, 200.0f);
+    int movement_speed = 1;
     int player_score = 0;
 
     public:
@@ -35,15 +35,19 @@ class Player
         position = newPosition;
     };
 
+    int getMovementSpeed() {
+        return movement_speed;
+    };
+
     // Public Functions
     void takeDamage() 
     {
         cout << "Player took damage."<<endl;
     };
 
-    void move() 
+    void move(float offsetX)
     {
-        cout << "Player moved." << endl;
+        position.x += offsetX;
     };
 
     void shootBullets() 
@@ -82,11 +86,11 @@ int main()
         // Handling keyboard input
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) 
         {
-            player.move();
+            player.move(-1.0f * player.getMovementSpeed());
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
         {
-            player.move();
+            player.move(1.0f * player.getMovementSpeed());
         }
 
 
