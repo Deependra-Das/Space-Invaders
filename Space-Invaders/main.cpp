@@ -1,7 +1,11 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Header/GameService.h"
 using namespace std;
 
+#pragma region Old Code 1
+
+/*
 class Player 
 {
     private:
@@ -56,11 +60,16 @@ class Player
     };
 
 };
+*/
+
+#pragma endregion
 
 int main() 
 {
     // Object Instantiation
+    #pragma region Old Code 2
 
+    /*
     // For SFML Window
     sf::VideoMode videoMode = sf::VideoMode(800,600);
     sf::RenderWindow window(videoMode, "Space Invaders");
@@ -104,5 +113,17 @@ int main()
     }
 
     return 0;
+    */
+
+    #pragma endregion
+
+    GameService gameService;
+    gameService.ignite();
+
+    while (gameService.isRunning())
+    {
+        gameService.update();
+        gameService.render();
+    }
 
 }
