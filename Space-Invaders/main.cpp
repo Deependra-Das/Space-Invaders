@@ -18,7 +18,7 @@ class Player
     sf::Texture player_texture;
     sf::Sprite player_sprite;
 
-    //Public Getter & Setter functions
+    // Public Getter & Setter functions
     int getScore() {
         return player_score;
     };
@@ -27,7 +27,15 @@ class Player
         player_score = newScore;
     };
 
-    //Public Functions
+    sf::Vector2f getPosition() {
+        return position;
+    };
+
+    void setScore(sf::Vector2f newPosition) {
+        position = newPosition;
+    };
+
+    // Public Functions
     void takeDamage() 
     {
         cout << "Player took damage."<<endl;
@@ -47,21 +55,17 @@ class Player
 
 int main() 
 {
-    //Object Instantiation
+    // Object Instantiation
+
+    // For SFML Window
+    sf::VideoMode videoMode = sf::VideoMode(800,600);
+    sf::RenderWindow window(videoMode, "Space Invaders");
+
     Player player;
-    cout << "Player Score: " << player.getScore() << "\n";
 
-    player.setScore(100);
-    cout << "Player Modified Score: " << player.getScore() << "\n\n";
+    player.player_texture.loadFromFile("assets/textures/player_ship.png");
+    player.player_sprite.setTexture(player.player_texture);
 
-    player.takeDamage();
-    player.move();
-    player.shootBullets();
-
-
-    // SFML Window
-    sf::VideoMode videoMode = sf::VideoMode(800, 600);
-    sf::RenderWindow window(videoMode, "SFML Window");
 
     while (window.isOpen()) 
     {
@@ -69,10 +73,28 @@ int main()
         while (window.pollEvent(event)) 
         {
             if (event.type == sf::Event::Closed)
+            {
                 window.close();
+            }
+                
         }
 
+        // Handling keyboard input
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) 
+        {
+            player.move();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
+        {
+            player.move();
+        }
+
+
         window.clear(sf::Color::Black);
+
+        player.player_sprite.setPosition(player.getPosition());
+
+        window.draw(player.player_sprite);
 
         window.display();
     }
