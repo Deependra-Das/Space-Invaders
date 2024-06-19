@@ -117,13 +117,14 @@ int main()
 
     #pragma endregion
 
-    GameService gameService;
-    gameService.ignite();
+    GameService* game_service = new GameService();
 
-    while (gameService.isRunning())
+    game_service->ignite();
+
+    while (game_service->isRunning())
     {
-        gameService.update();
-        gameService.render();
+        game_service->update();
+        game_service->render();
     }
 
 }

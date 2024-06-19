@@ -2,40 +2,48 @@
 
 ServiceLocator::ServiceLocator()
 {
-	//Constructor
+	graphic_service = nullptr;
+	createServices();
 }
 
 ServiceLocator::~ServiceLocator()
 {
-	//Destructor
+	clearAllServices();
 }
 
 void ServiceLocator::createServices()
 {
-	// Creates instances of all services.
+	graphic_service = new GraphicService();
 }
 
 void ServiceLocator::clearAllServices()
 {
-	//	Deletes and deallocates memory for all services.
+	delete(graphic_service);
+	graphic_service = nullptr;
 }
 
 ServiceLocator* ServiceLocator::getInstance()
 {
-	return nullptr;
+	static ServiceLocator instance;
+	return &instance;
 }
 
 void ServiceLocator ::initialize()
 {
-	//	Initializes the ServiceLocator.
+	graphic_service->initialize();
 }
 
 void ServiceLocator::update()
 {
-	//	Updates all services.
+	graphic_service->update();
 }
 
 void ServiceLocator::render()
 {
-	//	Renders using the services.
+	graphic_service->render();
+}
+
+GraphicService* ServiceLocator::getGraphicService() 
+{ 
+	return graphic_service; 
 }
