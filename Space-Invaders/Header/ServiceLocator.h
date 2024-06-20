@@ -2,6 +2,7 @@
 
 #include "../Header/GraphicService.h"
 #include "../Header/EventService.h"
+#include "../Header/PlayerService.h"
 
 class ServiceLocator
 {
@@ -14,6 +15,7 @@ private:
     //private member variables
     GraphicService* graphic_service;
     EventService* event_service;
+    PlayerService* player_service;
 
     // Private Methods:
     void createServices(); 
@@ -30,4 +32,5 @@ public:
 
     GraphicService* getGraphicService();
     EventService* getEventService();
+    PlayerService* getPlayerService();
 };
