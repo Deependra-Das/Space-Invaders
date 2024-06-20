@@ -35,6 +35,7 @@ void GameService::destroy()
 
 void GameService::update()
 {
+	service_locator->getEventService()->processEvents();
 	service_locator->update();
 }
 
