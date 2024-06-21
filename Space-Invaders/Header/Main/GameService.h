@@ -2,22 +2,25 @@
 
 #include "../../Header/Global/ServiceLocator.h"
 
-class GameService
+namespace Main
 {
-private:
-	ServiceLocator* service_locator;
-	sf::RenderWindow* game_window;
+	class GameService
+	{
+	private:
+		Global::ServiceLocator* service_locator;
+		sf::RenderWindow* game_window;
 
-	void initialize();	
-	void initializeVariables();
-	void destroy();			
+		void initialize();
+		void initializeVariables();
+		void destroy();
 
-public:
-	GameService();			
-	~GameService();			
+	public:
+		GameService();
+		~GameService();
 
-	void ignite();			
-	void update();			
-	void render();			
-	bool isRunning();
-};
+		void ignite();
+		void update();
+		void render();
+		bool isRunning();
+	};
+}

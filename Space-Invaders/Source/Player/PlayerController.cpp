@@ -5,68 +5,73 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include<algorithm>
 
-PlayerController::PlayerController()
+namespace Player
 {
-	player_model = new PlayerModel();
-	player_view = new PlayerView();;
-}
+	using namespace Global;
 
-PlayerController::~PlayerController()
-{
-	delete(player_model);
-	delete(player_view);
-	player_model=nullptr;
-	player_view = nullptr;
-}
-
-void PlayerController::processPlayerInput()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	PlayerController::PlayerController()
 	{
-		moveLeft();
+		player_model = new PlayerModel();
+		player_view = new PlayerView();;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+
+	PlayerController::~PlayerController()
 	{
-		moveRight();
+		delete(player_model);
+		delete(player_view);
+		player_model = nullptr;
+		player_view = nullptr;
 	}
-}
 
-void PlayerController::moveLeft()
-{
-	sf::Vector2f currentPosition = player_model->getPlayerPosition();
-	currentPosition.x -= player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	void PlayerController::processPlayerInput()
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			moveLeft();
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			moveRight();
+		}
+	}
 
-	currentPosition.x = std::max(currentPosition.x, player_model->left_most_position.x);
-	player_model->setPlayerPosition(currentPosition);
-}
+	void PlayerController::moveLeft()
+	{
+		sf::Vector2f currentPosition = player_model->getPlayerPosition();
+		currentPosition.x -= player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-void PlayerController::moveRight()
-{
-	sf::Vector2f currentPosition = player_model->getPlayerPosition();
-	currentPosition.x += player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		currentPosition.x = std::max(currentPosition.x, player_model->left_most_position.x);
+		player_model->setPlayerPosition(currentPosition);
+	}
 
-	currentPosition.x = std::min(currentPosition.x, player_model->right_most_position.x);
-	player_model->setPlayerPosition(currentPosition);
-}
+	void PlayerController::moveRight()
+	{
+		sf::Vector2f currentPosition = player_model->getPlayerPosition();
+		currentPosition.x += player_model->player_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-void PlayerController::initialize()
-{
-	player_model->initialize();
-	player_view->initialize(this);
-}
+		currentPosition.x = std::min(currentPosition.x, player_model->right_most_position.x);
+		player_model->setPlayerPosition(currentPosition);
+	}
 
-void PlayerController::update()
-{
-	processPlayerInput();
-	player_view->update();
-}
+	void PlayerController::initialize()
+	{
+		player_model->initialize();
+		player_view->initialize(this);
+	}
 
-void PlayerController::render()
-{
-	player_view->render();
-}
+	void PlayerController::update()
+	{
+		processPlayerInput();
+		player_view->update();
+	}
 
-sf::Vector2f PlayerController::getPlayerPosition()
-{
-	return player_model->getPlayerPosition();
+	void PlayerController::render()
+	{
+		player_view->render();
+	}
+
+	sf::Vector2f PlayerController::getPlayerPosition()
+	{
+		return player_model->getPlayerPosition();
+	}
 }
