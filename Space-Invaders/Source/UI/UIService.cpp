@@ -30,7 +30,7 @@ namespace UI
 
 	void UIService::render()
 	{
-
+		main_menu_controller->render();
 	}
 
 	void UIService::createControllers()

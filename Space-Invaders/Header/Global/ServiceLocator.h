@@ -4,6 +4,7 @@
 #include "../../Header/Event/EventService.h"
 #include "../../Header/Player/PlayerService.h"
 #include "../../Header/Time/TimeService.h"
+#include "../../Header/UI/UIService.h"
 
 namespace Global
 {
@@ -20,6 +21,7 @@ namespace Global
         Time::TimeService* time_service;
         Event::EventService* event_service;
         Player::PlayerService* player_service;
+        UI::UIService* ui_service;
 
         // Private Methods:
         void createServices(); 
@@ -38,5 +40,6 @@ namespace Global
         Event::EventService* getEventService();
         Player::PlayerService* getPlayerService();
         Time::TimeService* getTimeService();
+        UI::UIService* getUIService();
     };
 }
