@@ -5,6 +5,8 @@ using namespace std;
 
 int main() 
 {
+    using namespace Main;
+
     // Object Instantiation
     GameService* game_service = new GameService();
 

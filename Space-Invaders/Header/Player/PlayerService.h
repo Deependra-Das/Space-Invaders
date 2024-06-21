@@ -2,16 +2,19 @@
 
 #include "../../Header/Player/PlayerController.h"
 
-class PlayerService
+namespace Player
 {
-private:
-	PlayerController* player_controller;
+	class PlayerService
+	{
+	private:
+		PlayerController* player_controller;
 
-public:
-	PlayerService();
-	~PlayerService();
+	public:
+		PlayerService();
+		~PlayerService();
 
-	void initialize();
-	void update();
-	void render();
-};
+		void initialize();
+		void update();
+		void render();
+	};
+}
