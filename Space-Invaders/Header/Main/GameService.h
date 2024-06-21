@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Header/ServiceLocator.h"
+#include "../../Header/Global/ServiceLocator.h"
 
 class GameService
 {
