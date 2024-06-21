@@ -1,4 +1,4 @@
-#include "../Header/GraphicService.h"
+#include "../../Header/Graphic/GraphicService.h"
 
 GraphicService::GraphicService()
 {
@@ -14,6 +14,7 @@ GraphicService::~GraphicService()
 void GraphicService::initialize()
 {
 	game_window = createGameWindow();
+	game_window->setFramerateLimit(frame_rate);
 }
 
 void GraphicService::setVideoMode()

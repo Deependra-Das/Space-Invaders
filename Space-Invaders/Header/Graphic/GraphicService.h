@@ -11,7 +11,7 @@ private:
 
 	const int game_window_width = 800;
 	const int game_window_height = 600;
-
+	const int frame_rate = 60;
 	const sf::Color window_color = sf::Color::Blue;
 	sf::VideoMode* video_mode;
 	sf::RenderWindow* game_window;
