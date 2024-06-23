@@ -15,6 +15,7 @@ namespace Enemy
 	void EnemyModel::initialize()
 	{
 		enemy_current_position = enemy_reference_position;
+		movement_direction = MovementDirection::RIGHT;
 	}
 
 
@@ -38,4 +39,13 @@ namespace Enemy
 		enemy_current_position = position;
 	}
 
+	MovementDirection EnemyModel::getMovementDirection()
+	{
+		return movement_direction;
+	}
+
+	void EnemyModel::setMovementDirection(MovementDirection direction)
+	{
+		movement_direction = direction;
+	}
 }
