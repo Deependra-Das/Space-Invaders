@@ -2,6 +2,7 @@
 #include "../../Header/Enemy/EnemyView.h"
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Enemy/EnemyConfig.h"
 
 namespace Enemy
 {
@@ -10,7 +11,7 @@ namespace Enemy
 	EnemyController::EnemyController()
 	{
 		enemy_view = new EnemyView();
-		enemy_model = new EnemyModel();
+		enemy_model = new EnemyModel(EnemyType::ZAPPER);
 	}
 
 	EnemyController::~EnemyController()
@@ -118,4 +119,13 @@ namespace Enemy
 		}
 	}
 
+	void EnemyController::getRandomInitialPosition()
+	{
+
+	}
+
+	void EnemyController::handleOutOfBounds()
+	{
+
+	}
 }
