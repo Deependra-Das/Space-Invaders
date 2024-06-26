@@ -54,10 +54,10 @@ namespace Enemy
 
 	void EnemyService::SpawnEnemy()
 	{
-		EnemyController* enemy_controller = new EnemyController();
+		/*EnemyController* enemy_controller = new EnemyController();
 		enemy_controller->initialize();
 
-		enemy_list.push_back(enemy_controller);
+		enemy_list.push_back(enemy_controller);*/
 	}
 
 	void EnemyService::processEnemySpawn()

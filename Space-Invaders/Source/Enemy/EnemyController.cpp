@@ -44,23 +44,23 @@ namespace Enemy
 		return enemy_model->getEnemyCurrentPostion();
 	}
 
-	void EnemyController::move()
-	{
-		switch (enemy_model->getMovementDirection())
-		{
-		case::Enemy::MovementDirection::LEFT :
-			moveLeft();
-			break;
+	//void EnemyController::move()
+	//{
+	//	switch (enemy_model->getMovementDirection())
+	//	{
+	//	case::Enemy::MovementDirection::LEFT :
+	//		moveLeft();
+	//		break;
 
-		case::Enemy::MovementDirection::RIGHT:
-			moveRight();
-			break;
+	//	case::Enemy::MovementDirection::RIGHT:
+	//		moveRight();
+	//		break;
 
-		case::Enemy::MovementDirection::DOWN:
-			moveDown();
-			break;
-		}
-	}
+	//	case::Enemy::MovementDirection::DOWN:
+	//		moveDown();
+	//		break;
+	//	}
+	//}
 
 	void EnemyController::moveLeft()
 	{
