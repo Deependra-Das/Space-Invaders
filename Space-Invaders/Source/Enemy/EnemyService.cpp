@@ -2,6 +2,9 @@
 #include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Time/TimeService.h"
+#include "../../Header/Enemy/EnemyConfig.h"
+#include "../../Header/Enemy/Controllers/SubZeroController.h"
+#include "../../Header/Enemy/Controllers/ZapperController.h"
 
 namespace Enemy
 {
@@ -54,10 +57,10 @@ namespace Enemy
 
 	void EnemyService::SpawnEnemy()
 	{
-		/*EnemyController* enemy_controller = new EnemyController();
+		EnemyController* enemy_controller = new Controller::ZapperController(EnemyType::ZAPPER);
 		enemy_controller->initialize();
 
-		enemy_list.push_back(enemy_controller);*/
+		enemy_list.push_back(enemy_controller);
 	}
 
 	void EnemyService::processEnemySpawn()

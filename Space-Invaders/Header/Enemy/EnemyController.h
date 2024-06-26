@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "../../Header/Enemy/EnemyConfig.h"
 
 namespace Enemy
 {
@@ -9,7 +10,7 @@ namespace Enemy
 
 	class EnemyController
 	{
-	private:
+	protected:
 		EnemyModel* enemy_model;
 		EnemyView* enemy_view;
 
@@ -19,7 +20,7 @@ namespace Enemy
 		void moveDown();
 
 	public:
-		EnemyController();
+		EnemyController(EnemyType type);
 		virtual ~EnemyController();
 
 		void virtual initialize();
@@ -29,6 +30,8 @@ namespace Enemy
 		sf::Vector2f getEnemyPosition();
 		void getRandomInitialPosition();
 		void handleOutOfBounds();
+
+		EnemyType getEnemyType();
 	
 	};
 }

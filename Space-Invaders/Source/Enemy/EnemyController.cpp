@@ -8,10 +8,10 @@ namespace Enemy
 {
 	using namespace Global;
 
-	EnemyController::EnemyController()
+	EnemyController::EnemyController(EnemyType type)
 	{
 		enemy_view = new EnemyView();
-		enemy_model = new EnemyModel(EnemyType::ZAPPER);
+		enemy_model = new EnemyModel(type);
 	}
 
 	EnemyController::~EnemyController()
@@ -43,24 +43,6 @@ namespace Enemy
 	{
 		return enemy_model->getEnemyCurrentPostion();
 	}
-
-	//void EnemyController::move()
-	//{
-	//	switch (enemy_model->getMovementDirection())
-	//	{
-	//	case::Enemy::MovementDirection::LEFT :
-	//		moveLeft();
-	//		break;
-
-	//	case::Enemy::MovementDirection::RIGHT:
-	//		moveRight();
-	//		break;
-
-	//	case::Enemy::MovementDirection::DOWN:
-	//		moveDown();
-	//		break;
-	//	}
-	//}
 
 	void EnemyController::moveLeft()
 	{
@@ -127,5 +109,10 @@ namespace Enemy
 	void EnemyController::handleOutOfBounds()
 	{
 
+	}
+
+	EnemyType EnemyController::getEnemyType()
+	{
+		return enemy_model->getEnemyType();
 	}
 }

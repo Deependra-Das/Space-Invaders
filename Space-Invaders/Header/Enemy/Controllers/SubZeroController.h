@@ -6,7 +6,7 @@ namespace Enemy
 {
     namespace Controller
     {
-        class SubzeroController : public EnemyController
+        class SubZeroController : public EnemyController
         {
         private:
             float vertical_movement_speed = 100.0f;
@@ -15,8 +15,8 @@ namespace Enemy
             void moveDown();
 
         public:
-            SubzeroController();
-            ~SubzeroController();
+            SubZeroController(EnemyType type);
+            ~SubZeroController();
 
             void initialize() override;
 
