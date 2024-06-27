@@ -10,6 +10,7 @@ namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
+	using namespace Controller;
 
 	EnemyService::EnemyService()
 	{
@@ -55,12 +56,14 @@ namespace Enemy
 		}
 	}
 
-	void EnemyService::SpawnEnemy()
+	EnemyController* EnemyService::SpawnEnemy()
 	{
-		EnemyController* enemy_controller = new Controller::ZapperController(EnemyType::ZAPPER);
+		EnemyController* enemy_controller = createEnemy(getRandomEnemyType());
 		enemy_controller->initialize();
 
 		enemy_list.push_back(enemy_controller);
+
+		return enemy_controller;
 	}
 
 	void EnemyService::processEnemySpawn()
@@ -76,4 +79,30 @@ namespace Enemy
 	{
 		spawn_timer += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 	}
+
+	EnemyController* EnemyService::createEnemy(EnemyType enemy_type)
+	{
+		switch (enemy_type)
+		{
+		case::Enemy::EnemyType::SUBZERO:
+			return new SubZeroController(Enemy::EnemyType::SUBZERO);
+
+		case::Enemy::EnemyType::ZAPPER:
+			return new ZapperController(Enemy::EnemyType::ZAPPER);
+
+		}
+	}
+
+	EnemyType EnemyService::getRandomEnemyType()
+	{
+		int randomType = std::rand() % 2; 
+		return static_cast<Enemy::EnemyType>(randomType);
+	}
+
+	void EnemyService::destroyEnemy(EnemyController* enemy_controller)
+	{
+		enemy_list.erase(std::remove(enemy_list.begin(), enemy_list.end(), enemy_controller), enemy_list.end());
+		delete(enemy_controller);
+	}
+
 }

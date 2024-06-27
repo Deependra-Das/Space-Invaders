@@ -8,6 +8,9 @@ namespace Enemy
 	class EnemyView;
 	class EnemyModel;
 
+	enum class EnemyType;
+	enum class EnemyState;
+
 	class EnemyController
 	{
 	protected:
@@ -28,10 +31,11 @@ namespace Enemy
 		void render();
 		
 		sf::Vector2f getEnemyPosition();
-		void getRandomInitialPosition();
+		sf::Vector2f getRandomInitialPosition();
 		void handleOutOfBounds();
 
 		EnemyType getEnemyType();
+		EnemyState getEnemyState();
 	
 	};
 }
