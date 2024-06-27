@@ -64,6 +64,7 @@ namespace Enemy
 				break;
 			}
 		}
+
 		void ThunderSnakeController::moveLeft()
 		{
 			sf::Vector2f current_position = enemy_model->getEnemyCurrentPostion();
