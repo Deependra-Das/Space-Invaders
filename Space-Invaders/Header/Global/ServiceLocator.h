@@ -7,6 +7,7 @@
 #include "../../Header/UI/UIService.h"
 #include "../../Header/Enemy/EnemyService.h"
 #include "../../Header/Gameplay/GameplayService.h"
+#include "../../Header/Element/ElementService.h"
 
 namespace Global
 {
@@ -26,6 +27,7 @@ namespace Global
         UI::UIService* ui_service;
         Enemy::EnemyService* enemy_service;
         Gameplay::GameplayService* gameplay_service;
+        Element::ElementService* element_service;
 
         // Private Methods:
         void createServices(); 
@@ -47,5 +49,6 @@ namespace Global
         UI::UIService* getUIService();
         Enemy::EnemyService* getEnemyService();
         Gameplay::GameplayService* getGameplayService();
+        Element::ElementService* getElementService();
     };
 }
