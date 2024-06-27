@@ -20,8 +20,8 @@ namespace Enemy
 
 	public:
 
-		const float enemy_movement_speed = 250.0f;
-
+		float horizontal_movement_speed = 100.0f;
+		float vertical_movement_speed = 30.f;
 		const sf::Vector2f left_most_position = sf::Vector2f(50.f, 50.f);
 		const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 50.f);
 
