@@ -5,6 +5,8 @@
 #include "../../Header/Player/PlayerService.h"
 #include "../../Header/Time/TimeService.h"
 #include "../../Header/UI/UIService.h"
+#include "../../Header/Enemy/EnemyService.h"
+#include "../../Header/Gameplay/GameplayService.h"
 
 namespace Global
 {
@@ -22,6 +24,8 @@ namespace Global
         Event::EventService* event_service;
         Player::PlayerService* player_service;
         UI::UIService* ui_service;
+        Enemy::EnemyService* enemy_service;
+        Gameplay::GameplayService* gameplay_service;
 
         // Private Methods:
         void createServices(); 
@@ -41,5 +45,7 @@ namespace Global
         Player::PlayerService* getPlayerService();
         Time::TimeService* getTimeService();
         UI::UIService* getUIService();
+        Enemy::EnemyService* getEnemyService();
+        Gameplay::GameplayService* getGameplayService();
     };
 }
