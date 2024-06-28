@@ -17,8 +17,6 @@ namespace Element
             sf::Texture bunker_texture;
             sf::Sprite bunker_sprite;
 
-            const sf::String bunker_texture_path = "assets/textures/bunker.png";
-
             BunkerController* bunker_controller;
             sf::RenderWindow* game_window;
 

@@ -9,9 +9,6 @@ namespace Player
 	class PlayerView
 	{
 	private:
-
-		const sf::String player_texture_path = "assets/textures/player_ship.png";
-
 		sf::Texture player_texture;
 		sf::Sprite player_sprite;
 
