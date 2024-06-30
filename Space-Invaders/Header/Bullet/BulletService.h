@@ -26,7 +26,7 @@ namespace Bullet
 		void update();
 		void render();
 
-		BulletController* spawnBullets(BulletType bullet_type , sf::Vector2f position, MovementDirection direction);
+		BulletController* spawnBullet(BulletType bullet_type , sf::Vector2f position, MovementDirection direction);
 		void destroyBullet(BulletController* bullet_controller);
 
 	};

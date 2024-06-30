@@ -17,10 +17,17 @@ namespace Enemy
 		EnemyModel* enemy_model;
 		EnemyView* enemy_view;
 
+		float rate_of_fire=3.0f;
+		float elapsed_fire_duration=0.0f;
+
 		void virtual move()=0;
 		void moveLeft();
 		void moveRight();
 		void moveDown();
+
+		void updateFireTimer();
+		void processBulletFire();
+		virtual void fireBullet()=0;
 
 	public:
 		EnemyController(EnemyType type);

@@ -65,7 +65,7 @@ namespace Bullet
 		}
 	}
 
-	BulletController* BulletService::spawnBullets(BulletType bullet_type, sf::Vector2f position, MovementDirection direction)
+	BulletController* BulletService::spawnBullet(BulletType bullet_type, sf::Vector2f position, MovementDirection direction)
 	{
 		BulletController* bullet_controller = createBullet(bullet_type);
 		bullet_controller->initialize(position, direction);

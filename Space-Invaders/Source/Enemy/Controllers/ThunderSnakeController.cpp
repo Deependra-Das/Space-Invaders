@@ -6,6 +6,7 @@
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Bullet;
 
 	namespace Controller
 	{
@@ -24,6 +25,7 @@ namespace Enemy
 			EnemyController::initialize();
 			enemy_model->setMovementDirection(getInitialMovementDirection());
 			enemy_model->horizontal_movement_speed = thundersnake_horizontal_movement_speed;
+			rate_of_fire = thundersnake_rate_of_fire;
 		}
 
 		MovementDirection ThunderSnakeController::getInitialMovementDirection()
@@ -122,6 +124,12 @@ namespace Enemy
 			else enemy_model->setEnemyCurrentPostion(currentPosition);
 		}
 
+		void ThunderSnakeController::fireBullet()
+		{
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::TORPEDO,
+				enemy_model->getEnemyCurrentPostion() + enemy_model->barrel_position_offset,
+				Bullet::MovementDirection::DOWN);
+		}
 	
 	}
 }

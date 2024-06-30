@@ -32,7 +32,10 @@ namespace Enemy
 	void EnemyController::update()
 	{
 		move();
+		updateFireTimer();
+		processBulletFire();
 		enemy_view->update();
+		handleOutOfBounds();
 	}
 
 	void EnemyController::render()
@@ -131,4 +134,19 @@ namespace Enemy
 	{
 		return enemy_model->getEnemyState();
 	}
+
+	void EnemyController::updateFireTimer()
+	{
+		elapsed_fire_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	}
+
+	void EnemyController::processBulletFire()
+	{
+		if (elapsed_fire_duration >= rate_of_fire)
+		{
+			fireBullet();
+			elapsed_fire_duration = 0.f;
+		}
+	}
+
 }
