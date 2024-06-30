@@ -2,10 +2,16 @@
 
 namespace Bullet
 {
-	enum class  MovementDirection
+	enum class BulletType
 	{
-		LEFT,
-		RIGHT,
+		LASER_BULLET,
+		TORPEDO,
+		FROST_BULLET,
+	};
+
+	enum class MovementDirection
+	{
+		UP,
 		DOWN,
 	};
 }
