@@ -7,6 +7,7 @@
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Bullet;
 
 	namespace Controller
 	{
@@ -86,5 +87,13 @@ namespace Enemy
 				enemy_model->setEnemyCurrentPostion(current_position);
 			}
 		}
+
+		void UFOController::fireBullet()
+		{
+		/*	ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
+				enemy_model->getEnemyCurrentPostion() + enemy_model->barrel_position_offset,
+				Bullet::MovementDirection::DOWN);*/
+		}
+
 	}
 }

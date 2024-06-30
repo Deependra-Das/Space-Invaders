@@ -9,6 +9,7 @@
 #include "../../Header/Gameplay/GameplayService.h"
 #include "../../Header/Element/ElementService.h"
 #include "../../Header/Sound/SoundService.h"
+#include "../../Header/Bullet/BulletService.h"
 
 namespace Global
 {
@@ -30,6 +31,7 @@ namespace Global
         Gameplay::GameplayService* gameplay_service;
         Element::ElementService* element_service;
         Sound::SoundService* sound_service;
+        Bullet::BulletService* bullet_service;
 
         // Private Methods:
         void createServices(); 
@@ -53,5 +55,8 @@ namespace Global
         Gameplay::GameplayService* getGameplayService();
         Element::ElementService* getElementService();
         Sound::SoundService* getSoundService();
+        Bullet::BulletService* getBulletService();
+
+        void deleteServiceLocator();
     };
 }

@@ -15,6 +15,7 @@ namespace Enemy
             void moveRight();
 
             MovementDirection getInitialMovementDirection();
+            void fireBullet() override;
 
         public:
             UFOController(EnemyType type);
