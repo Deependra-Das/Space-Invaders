@@ -17,7 +17,7 @@ namespace Bullet
 
 		void updateProjectilePosition() override;
 
-		void move();
+		void moveUp();
 		void moveDown();
 		void handleOutOfBounds();
 
