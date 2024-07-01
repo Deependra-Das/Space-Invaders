@@ -1,13 +1,16 @@
 #include "../../Header/Powerup/PowerupService.h"
 #include "../../Header/Powerup/PowerupConfig.h"
+#include "../../header/Powerup/PowerupController.h"
 #include "../../header/Powerup/Controllers/OutscalBombController.h"
 #include "../../header/Powerup/Controllers/TripleLaserController.h"
 #include "../../header/Powerup/Controllers/RapidFireController.h"
 #include "../../header/Powerup/Controllers/ShieldController.h"
+#include "../../Header/Global/ServiceLocator.h"
 
 namespace Powerup
 {
 	using namespace Controller;
+	using namespace Collectible;
 
 	PowerupService::PowerupService()
 	{
@@ -16,7 +19,7 @@ namespace Powerup
 
 	PowerupService::~PowerupService()
 	{
-
+		destroy();
 	}
 
 	PowerupController* PowerupService::createPowerup(PowerupType type)
@@ -26,17 +29,24 @@ namespace Powerup
 		case::Powerup::PowerupType::TRIPPLE_LASER:
 			return new TripleLaserController(Powerup::PowerupType::TRIPPLE_LASER);
 	
-		//case::Powerup::PowerupType::SHIELD:
-		//	
-		//case::Powerup::PowerupType::RAPID_FIRE:
-		//
-		//case::Powerup::PowerupType::OUTSCAL_BOMB:
+		case::Powerup::PowerupType::SHIELD:
+			return new ShieldController(Powerup::PowerupType::SHIELD);
+			
+		case::Powerup::PowerupType::RAPID_FIRE:
+			return new RapidFireController(Powerup::PowerupType::RAPID_FIRE);
+		
+		case::Powerup::PowerupType::OUTSCAL_BOMB:
+			return new OutscalBombController(Powerup::PowerupType::OUTSCAL_BOMB);
 		
 		}
 	}
+
 	void PowerupService::destroy()
 	{
-
+		for (int i = 0; i < powerup_list.size(); i++)
+		{
+			delete(powerup_list[i]);
+		}
 	}
 
 
@@ -44,13 +54,21 @@ namespace Powerup
 	{
 
 	}
+
 	void PowerupService::update()
 	{
-
+		for (int i = 0; i < powerup_list.size(); i++)
+		{
+			powerup_list[i]->update();
+		}
 	}
 
 	void PowerupService::render()
 	{
+		for (int i = 0; i < powerup_list.size(); i++)
+		{
+			powerup_list[i]->render();
+		}
 
 	}
 
@@ -65,6 +83,8 @@ namespace Powerup
 
 	void PowerupService::destroyPowerup(PowerupController* powerup_controller)
 	{
+		powerup_list.erase(std::remove(powerup_list.begin(), powerup_list.end(), powerup_controller), powerup_list.end());
 
+		delete(powerup_controller);
 	}
 }
