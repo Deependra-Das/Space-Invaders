@@ -8,6 +8,7 @@ namespace Enemy
 {
 	using namespace Global;
 	using namespace Bullet;
+	using namespace Powerup;
 
 	namespace Controller
 	{
@@ -95,5 +96,12 @@ namespace Enemy
 				Bullet::MovementDirection::DOWN);*/
 		}
 
+		PowerupType UFOController::getRandomPowerupType()
+		{
+			std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+			int random_value = std::rand() % (static_cast<int>(PowerupType::OUTSCAL_BOMB) + 1);
+			return static_cast<PowerupType>(random_value);
+		}
 	}
 }

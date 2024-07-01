@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../header/Enemy/EnemyController.h"
+#include "../../header/Powerup/PowerupConfig.h"
 
 namespace Enemy
 {
@@ -16,6 +17,7 @@ namespace Enemy
 
             MovementDirection getInitialMovementDirection();
             void fireBullet() override;
+            Powerup::PowerupType getRandomPowerupType();
 
         public:
             UFOController(EnemyType type);
