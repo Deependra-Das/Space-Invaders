@@ -10,6 +10,7 @@
 #include "../../Header/Element/ElementService.h"
 #include "../../Header/Sound/SoundService.h"
 #include "../../Header/Bullet/BulletService.h"
+#include "../../Header/Powerup/PowerupService.h"
 
 namespace Global
 {
@@ -32,6 +33,7 @@ namespace Global
         Element::ElementService* element_service;
         Sound::SoundService* sound_service;
         Bullet::BulletService* bullet_service;
+        Powerup::PowerupService* powerup_service;
 
         // Private Methods:
         void createServices(); 
@@ -56,6 +58,7 @@ namespace Global
         Element::ElementService* getElementService();
         Sound::SoundService* getSoundService();
         Bullet::BulletService* getBulletService();
+        Powerup::PowerupService* getPowerupService();
 
         void deleteServiceLocator();
     };
