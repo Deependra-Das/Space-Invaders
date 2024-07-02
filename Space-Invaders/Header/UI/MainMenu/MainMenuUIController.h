@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "../../Header/UI/Interface/IUIController.h"
+#include "../../Header/UI/UIElement/ImageView.h"
+#include "../../Header/UI/UIElement/ButtonView.h"
 
 namespace UI
 {
@@ -13,34 +15,32 @@ namespace UI
 			const float button_height = 140.0f;
 			const float button_width = 400.0f;
 
-			sf::RenderWindow * game_window;
+			const float play_button_y_position = 500.f;
+			const float instructions_button_y_position = 700.f;
+			const float quit_button_y_position = 900.f;
 
-			sf::Texture background_texture;
-			sf::Texture play_button_texture;
-			sf::Texture instructions_button_texture;
-			sf::Texture quit_button_texture;
+			const float background_image_alpha = 90.0f;
 
-			sf::Sprite background_sprite;
-			sf::Sprite play_button_sprite;
-			sf::Sprite instructions_button_sprite;
-			sf::Sprite quit_button_sprite;
+			UIElement::ImageView* background_image;
+			UIElement::ButtonView* play_button;
+			UIElement::ButtonView* instructions_button;
+			UIElement::ButtonView* quit_button;
 
+			void createImage();
+			void createButtons();
 			void initializeBackgroundImage();
-			void scaleBackgroundImage();
-
 			void initializeButtons();
-			bool loadButtonTexturesFromFile();
-			void setButtonSprites();
+			void registerButtonCallback();
 
-			void scaleAllButttons();
-			void scaleButton(sf::Sprite* button_to_scale);
-			void positionButtons();
+			void playButtonCallback();
+			void instructionsButtonCallback();
+			void quitButtonCallback();
 
-			void processButtonInteractions();
-			bool clickedButton(sf::Sprite*, sf::Vector2f);
+			void destroy();
 
 		public:
 			MainMenuUIController();
+			~MainMenuUIController();
 
 			void initialize() override;
 			void update() override;
