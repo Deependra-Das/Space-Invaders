@@ -1,12 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "../../Header/UI/Interface/IUIController.h"
 
 namespace UI
 {
 	namespace MainMenu
 	{
-		class MainMenuUIController
+		class MainMenuUIController: public Interface::IUIController
 		{
 		private:
 			const float button_height = 140.0f;
@@ -41,9 +42,10 @@ namespace UI
 		public:
 			MainMenuUIController();
 
-			void initialize();
-			void update();
-			void render();
+			void initialize() override;
+			void update() override;
+			void render() override;
+			void show() override;
 
 		};
 	}

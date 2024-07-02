@@ -130,5 +130,10 @@ namespace UI
             return event_service->pressedLeftMouseButton() && button_sprite->getGlobalBounds().contains(mouse_position);
         }
 
+        void MainMenuUIController::show()
+        {
+
+        }
+
     }
 }
