@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Element
 {
@@ -14,14 +15,14 @@ namespace Element
             const float bunker_sprite_width = 80.f;
             const float bunker_sprite_height = 80.f;
 
-            sf::Texture bunker_texture;
-            sf::Sprite bunker_sprite;
-
             BunkerController* bunker_controller;
-            sf::RenderWindow* game_window;
 
-            void scaleSprite();
+            UI::UIElement::ImageView* bunker_image;
+
+            void createUIElements();
             void initializeImage();
+            sf::String getBunkerTexturePath();
+            void destroy();
 
         public:
             BunkerView();

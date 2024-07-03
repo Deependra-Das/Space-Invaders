@@ -1,10 +1,13 @@
 #include "../../Header/UI/UIService.h"
 #include "../../Header/Main/GameService.h"
+#include "../../Header/UI/UIElement/TextView.h"
 
 namespace UI
 {
 	using namespace Main;
 	using namespace MainMenu;
+	using namespace Interface;
+	using namespace UIElement;
 
 	UIService::UIService()
 	{
@@ -18,39 +21,63 @@ namespace UI
 		destroyControllers();
 	}
 
-	void UIService::initialize()
-	{
-		initializeControllers();
-	}
-
-	void UIService::update()
-	{
-		switch (GameService::getGameState())
-		{
-			case GameState::MAIN_MENU:
-			return main_menu_controller->update();;
-			break;
-		}
-	}
-
-	void UIService::render()
-	{
-		switch (GameService::getGameState())
-		{
-			case GameState::MAIN_MENU:
-			return main_menu_controller->render();
-			break;
-		}
-	}
-
 	void UIService::createControllers()
 	{
 		main_menu_controller = new MainMenuUIController();
 	}
 
+	void UIService::initialize()
+	{
+		initializeControllers();
+	}
+
 	void UIService::initializeControllers()
 	{
+		TextView::initializeTextView();
 		main_menu_controller->initialize();
+	}
+
+	void UIService::update()
+	{
+		IUIController* ui_controller = getCurrentUIController();
+
+		if (ui_controller)
+		{
+			ui_controller->update();
+		}
+			
+	}
+
+	void UIService::render()
+	{
+		IUIController* ui_controller = getCurrentUIController();
+
+		if (ui_controller)
+		{
+			ui_controller->render();
+		}
+	}
+
+	void UIService::showScreen()
+	{
+		IUIController* ui_controller = getCurrentUIController();
+
+		if (ui_controller)
+		{
+			ui_controller->show();
+		}
+	}
+
+	IUIController* UIService::getCurrentUIController()
+	{
+		switch (GameService::getGameState())
+		{
+		case GameState::MAIN_MENU:
+			return main_menu_controller;
+
+		default:
+			return nullptr;
+		}
 	}
 
 	void UIService::destroyControllers()

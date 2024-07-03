@@ -1,18 +1,22 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "../../header/UI/UIElement/ImageView.h"
 
 namespace Gameplay
 {
 	class GameplayView
 	{
 	private:
-		sf::RenderWindow * game_window;
-		sf::Texture background_texture;
-		sf::Sprite background_sprite;
+		const float background_sprite_width = 1920.0f;
+		const float background_sprite_height = 1080.0f;
 
-		void initializeBackgroundSprite();
-		void scaleBackgroundSprite();
+		UI::UIElement::ImageView* background_image;
+
+		void createUIElements();
+		void initializeImage();
+		sf::String getBackgroundTexturePath();
+		void destroy();
 
 	public:
 		GameplayView();
