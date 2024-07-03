@@ -3,9 +3,9 @@
 namespace Player
 {
 
-	PlayerModel::PlayerModel()
+	PlayerModel::PlayerModel(Entity::EntityType type_of_owner)
 	{
-
+		owner_type = type_of_owner;
 	}
 
 	PlayerModel::~PlayerModel()
@@ -53,5 +53,10 @@ namespace Player
 	void PlayerModel::setPlayerScore(int score)
 	{
 		player_score = score;
+	}
+
+	Entity::EntityType PlayerModel::getOwnerEntityType()
+	{
+		return owner_type;
 	}
 }

@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../../Header/Enemy/EnemyConfig.h"
+#include "../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
@@ -30,7 +31,7 @@ namespace Enemy
 		virtual void fireBullet()=0;
 
 	public:
-		EnemyController(EnemyType type);
+		EnemyController(EnemyType type, Entity::EntityType owner_type);
 		virtual ~EnemyController();
 
 		void virtual initialize();
@@ -43,6 +44,8 @@ namespace Enemy
 
 		EnemyType getEnemyType();
 		EnemyState getEnemyState();
+
+		Entity::EntityType getOwnerEntityType();
 	
 	};
 }

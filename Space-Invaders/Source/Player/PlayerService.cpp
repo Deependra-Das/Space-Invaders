@@ -1,11 +1,12 @@
 #include "../../Header/Player/PlayerService.h"
 #include "../../Header/Player/PlayerController.h"
+#include "../../Header/Entity/EntityConfig.h"
 
 namespace Player
 {
 	PlayerService::PlayerService()
 	{
-		player_controller = new PlayerController();
+		player_controller = new PlayerController(Entity::EntityType::PLAYER);
 	}
 
 	PlayerService::~PlayerService()

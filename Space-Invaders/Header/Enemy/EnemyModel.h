@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "../../Header/Entity/EntityConfig.h"
 
 namespace Enemy
 {
@@ -13,7 +14,7 @@ namespace Enemy
 	private:
 		sf::Vector2f enemy_reference_position= sf::Vector2f(50.f, 50.f);
 		sf::Vector2f enemy_current_position;
-
+		Entity::EntityType owner_type;
 		EnemyType enemy_type;
 		EnemyState enemy_state;
 		MovementDirection movement_direction;
@@ -28,7 +29,7 @@ namespace Enemy
 
 		const float vertical_travel_distance = 100.0f;
 
-		EnemyModel(EnemyType type);
+		EnemyModel(EnemyType type, Entity::EntityType owner_type);
 		~EnemyModel();
 
 		void initialize();
@@ -47,6 +48,8 @@ namespace Enemy
 
 		EnemyState getEnemyState();
 		void setEnemyState(EnemyState state);
+
+		Entity::EntityType getOwnerEntityType();
 
 	};
 }

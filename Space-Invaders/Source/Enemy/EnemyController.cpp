@@ -8,10 +8,10 @@ namespace Enemy
 {
 	using namespace Global;
 
-	EnemyController::EnemyController(EnemyType type)
+	EnemyController::EnemyController(EnemyType type, Entity::EntityType owner_type)
 	{
 		enemy_view = new EnemyView();
-		enemy_model = new EnemyModel(type);
+		enemy_model = new EnemyModel(type, owner_type);
 	}
 
 	EnemyController::~EnemyController()
@@ -147,6 +147,11 @@ namespace Enemy
 			fireBullet();
 			elapsed_fire_duration = 0.f;
 		}
+	}
+
+	Entity::EntityType EnemyController::getOwnerEntityType()
+	{
+		return enemy_model->getOwnerEntityType();
 	}
 
 }

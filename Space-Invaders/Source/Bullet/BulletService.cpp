@@ -42,18 +42,18 @@ namespace Bullet
 		}
 	}
 
-	BulletController* BulletService::createBullet(BulletType type)
+	BulletController* BulletService::createBullet(BulletType type, Entity::EntityType owner_type)
 	{
 		switch (type)
 		{
 		case::Bullet::BulletType::LASER_BULLET:
-			return new LaserBulletController(Bullet::BulletType::LASER_BULLET);
+			return new LaserBulletController(Bullet::BulletType::LASER_BULLET, owner_type);
 
 		case::Bullet::BulletType::FROST_BULLET:
-			return new FrostBulletController(Bullet::BulletType::FROST_BULLET);
+			return new FrostBulletController(Bullet::BulletType::FROST_BULLET, owner_type);
 
 		case::Bullet::BulletType::TORPEDO:
-			return new TorpedoController(Bullet::BulletType::TORPEDO);
+			return new TorpedoController(Bullet::BulletType::TORPEDO, owner_type);
 		}
 	}
 
@@ -65,9 +65,9 @@ namespace Bullet
 		}
 	}
 
-	BulletController* BulletService::spawnBullet(BulletType bullet_type, sf::Vector2f position, MovementDirection direction)
+	BulletController* BulletService::spawnBullet(BulletType bullet_type, Entity::EntityType owner_type, sf::Vector2f position, MovementDirection direction)
 	{
-		BulletController* bullet_controller = createBullet(bullet_type);
+		BulletController* bullet_controller = createBullet(bullet_type, owner_type);
 		bullet_controller->initialize(position, direction);
 		bullet_list.push_back(bullet_controller);
 

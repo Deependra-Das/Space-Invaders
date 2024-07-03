@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "../../Header/Entity/EntityConfig.h"
 
 namespace Player
 {
@@ -18,6 +19,7 @@ namespace Player
         sf::Vector2f player_position;
         PlayerState player_state;
         int player_score;
+        Entity::EntityType owner_type;
 
     public:
 
@@ -26,7 +28,7 @@ namespace Player
         const sf::Vector2f barrel_position_offset = sf::Vector2f(-20.f, 50.f);
         const float player_movement_speed = 350.0f;
 
-        PlayerModel();
+        PlayerModel(Entity::EntityType owner_type);
         ~PlayerModel();
 
         void initialize();
@@ -41,5 +43,7 @@ namespace Player
 
         int getPlayerScore();
         void setPlayerScore(int score);
+
+        Entity::EntityType getOwnerEntityType();
     };
 }

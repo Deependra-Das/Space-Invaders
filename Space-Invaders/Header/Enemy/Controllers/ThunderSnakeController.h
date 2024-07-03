@@ -23,7 +23,7 @@ namespace Enemy
             void fireBullet() override;
 
         public:
-            ThunderSnakeController(EnemyType type);
+            ThunderSnakeController(EnemyType type, Entity::EntityType owner_type);
             ~ThunderSnakeController();
 
             void initialize() override;

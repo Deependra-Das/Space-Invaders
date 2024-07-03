@@ -11,9 +11,9 @@ namespace Player
 	using namespace Event;
 	using namespace Bullet;
 
-	PlayerController::PlayerController()
+	PlayerController::PlayerController(Entity::EntityType owner_type)
 	{
-		player_model = new PlayerModel();
+		player_model = new PlayerModel(owner_type);
 		player_view = new PlayerView();;
 	}
 
@@ -87,9 +87,14 @@ namespace Player
 
 	void PlayerController::fireBullet()
 	{
-		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET, Entity::EntityType::PLAYER,
 			player_model->getPlayerPosition() - player_model->barrel_position_offset,
 			Bullet::MovementDirection::UP);
+	}
+
+	Entity::EntityType PlayerController::getOwnerEntityType()
+	{
+		return player_model->getOwnerEntityType();
 	}
 
 }

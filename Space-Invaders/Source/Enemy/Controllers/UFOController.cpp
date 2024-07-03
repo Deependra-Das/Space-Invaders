@@ -13,7 +13,7 @@ namespace Enemy
 	namespace Controller
 	{
 
-		UFOController::UFOController(EnemyType type) : EnemyController(type) { }
+		UFOController::UFOController(EnemyType type, Entity::EntityType owner_type) : EnemyController(type, owner_type) { }
 
 		UFOController::~UFOController()
 		{

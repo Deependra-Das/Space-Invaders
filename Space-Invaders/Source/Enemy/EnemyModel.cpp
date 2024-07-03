@@ -3,9 +3,10 @@
 
 namespace Enemy
 {
-	EnemyModel::EnemyModel(EnemyType type)
+	EnemyModel::EnemyModel(EnemyType type, Entity::EntityType type_of_owner)
 	{
 		enemy_type = type;
+		owner_type = type_of_owner;
 	}
 
 	EnemyModel::~EnemyModel()
@@ -69,5 +70,10 @@ namespace Enemy
 	void EnemyModel::setEnemyState(EnemyState state)
 	{
 		enemy_state = state;
+	}
+
+	Entity::EntityType EnemyModel::getOwnerEntityType()
+	{
+		return owner_type;
 	}
 }

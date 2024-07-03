@@ -20,7 +20,7 @@ namespace Enemy
             void fireBullet() override;
 
         public:
-            ZapperController(EnemyType type);
+            ZapperController(EnemyType type, Entity::EntityType owner_type);
             ~ZapperController();
 
             void initialize() override;
