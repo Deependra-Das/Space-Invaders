@@ -1,9 +1,12 @@
 #include "../../header/Powerup/Controllers/ShieldController.h"
+#include "../../header/Global/ServiceLocator.h"
 
 namespace Powerup
 {
     namespace Controller
     {
+        using namespace Global;
+
         ShieldController::ShieldController(PowerupType type) : PowerupController(type)
         {
         }
@@ -14,6 +17,11 @@ namespace Powerup
 
         void ShieldController::onCollected()
         {
-        };
+        }
+
+        void ShieldController::applyPowerup()
+        {
+            ServiceLocator::getInstance()->getEnemyService()->reset();
+        }
     }
 }

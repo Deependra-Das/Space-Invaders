@@ -39,8 +39,8 @@ namespace Gameplay
 	void GameplayService::restart()
 	{
 		ServiceLocator::getInstance()->getPlayerService()->reset();
-	/*	ServiceLocator::getInstance()->getEnemyService()->reset();
+	//ServiceLocator::getInstance()->getEnemyService()->reset();
 		ServiceLocator::getInstance()->getBulletService()->reset();
-		ServiceLocator::getInstance()->getElementService()->reset();*/
+	//	ServiceLocator::getInstance()->getElementService()->reset();*/
 	}
 }

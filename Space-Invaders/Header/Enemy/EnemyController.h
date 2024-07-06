@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Entity/EntityConfig.h"
+#include "../Collision/ICollider.h"
 
 namespace Enemy
 {
@@ -12,7 +13,7 @@ namespace Enemy
 	enum class EnemyType;
 	enum class EnemyState;
 
-	class EnemyController
+	class EnemyController : public Collision::ICollider
 	{
 	protected:
 		EnemyModel* enemy_model;
@@ -22,13 +23,13 @@ namespace Enemy
 		float elapsed_fire_duration=0.0f;
 
 		void virtual move()=0;
-		void moveLeft();
-		void moveRight();
-		void moveDown();
 
 		void updateFireTimer();
 		void processBulletFire();
 		virtual void fireBullet()=0;
+
+		sf::Vector2f getRandomInitialPosition();
+		virtual void destroy();
 
 	public:
 		EnemyController(EnemyType type, Entity::EntityType owner_type);
@@ -39,13 +40,15 @@ namespace Enemy
 		void render();
 		
 		sf::Vector2f getEnemyPosition();
-		sf::Vector2f getRandomInitialPosition();
 		void handleOutOfBounds();
 
 		EnemyType getEnemyType();
 		EnemyState getEnemyState();
 
 		Entity::EntityType getOwnerEntityType();
+
+		const sf::Sprite& getColliderSprite() override;
+		virtual void onCollision(ICollider* other_collider) override;
 	
 	};
 }
