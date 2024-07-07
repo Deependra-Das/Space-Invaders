@@ -27,4 +27,12 @@ namespace Gameplay
 	{
 		gameplay_Controller->render();
 	}
+
+	void GameplayService::restart()
+	{
+		ServiceLocator::getInstance()->getPlayerService()->reset();
+		ServiceLocator::getInstance()->getEnemyService()->reset();
+		ServiceLocator::getInstance()->getBulletService()->reset();
+		ServiceLocator::getInstance()->getElementService()->reset();
+	}
 }
