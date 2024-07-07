@@ -2,17 +2,13 @@
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
-#include "../../Header/Entity/EntityConfig.h"
-#include "../../Header/Collision/ICollider.h"
-#include "../../Header/Bullet/BulletController.h"
+
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Bullet;
 	using namespace Powerup;
-	using namespace Entity;
-	using namespace Collision;
 
 	namespace Controller
 	{
@@ -95,6 +91,9 @@ namespace Enemy
 
 		void UFOController::fireBullet()
 		{
+		/*	ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
+				enemy_model->getEnemyCurrentPostion() + enemy_model->barrel_position_offset,
+				Bullet::MovementDirection::DOWN);*/
 		}
 
 		PowerupType UFOController::getRandomPowerupType()
@@ -104,18 +103,5 @@ namespace Enemy
 			int random_value = std::rand() % (static_cast<int>(PowerupType::OUTSCAL_BOMB) + 1);
 			return static_cast<PowerupType>(random_value);
 		}
-
-		void UFOController::onCollision(ICollider* other_collider)
-		{
-			EnemyController::onCollision(other_collider);
-			BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
-
-			if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
-			{
-				ServiceLocator::getInstance()->getPowerupService()->spawnPowerup(getRandomPowerupType(), enemy_model->getEnemyCurrentPostion());
-				return;
-			}
-		}
-
 	}
 }

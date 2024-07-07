@@ -52,13 +52,13 @@ namespace Bullet
 		switch (bullet_controller->getBulletType())
 		{
 		case::Bullet::BulletType::FROST_BULLET:
-			return BulletConfig::frost_beam_texture_path;
+			return Config::frost_beam_texture_path;
 
 		case::Bullet::BulletType::LASER_BULLET:
-			return BulletConfig::laser_bullet_texture_path;
+			return Config::laser_bullet_texture_path;
 
 		case::Bullet::BulletType::TORPEDO:
-			return BulletConfig::torpedoe_texture_path;
+			return Config::torpedoe_texture_path;
 
 		}
 	}
@@ -66,11 +66,6 @@ namespace Bullet
 	void BulletView::destroy()
 	{
 		delete(bullet_image);
-	}
-
-	const sf::Sprite& BulletView::getBulletSprite()
-	{
-		return bullet_image->getSprite();
 	}
 }
 

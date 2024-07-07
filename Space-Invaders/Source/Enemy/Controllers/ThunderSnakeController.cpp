@@ -10,7 +10,10 @@ namespace Enemy
 
 	namespace Controller
 	{
-		ThunderSnakeController::ThunderSnakeController(EnemyType type) : EnemyController(type) { }
+		ThunderSnakeController::ThunderSnakeController(EnemyType type) : EnemyController(type)
+		{
+
+		}
 
 		ThunderSnakeController::~ThunderSnakeController()
 		{
@@ -123,7 +126,7 @@ namespace Enemy
 
 		void ThunderSnakeController::fireBullet()
 		{
-			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::TORPEDO, Entity::EntityType::ENEMY,
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::TORPEDO,
 				enemy_model->getEnemyCurrentPostion() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
 		}

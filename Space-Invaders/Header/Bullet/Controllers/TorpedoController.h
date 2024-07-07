@@ -12,7 +12,7 @@ namespace Bullet
 			float torpedo_movement_speed = 200.0f;
 
 		public:
-			TorpedoController(BulletType type, Entity::EntityType owner_type);
+			TorpedoController(BulletType type);
 			~TorpedoController();
 
 
