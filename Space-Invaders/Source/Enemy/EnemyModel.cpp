@@ -70,9 +70,4 @@ namespace Enemy
 	{
 		enemy_state = state;
 	}
-
-	Entity::EntityType EnemyModel::getOwnerEntityType()
-	{
-		return owner_type;
-	}
 }

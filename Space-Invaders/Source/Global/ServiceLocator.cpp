@@ -15,7 +15,6 @@ namespace Global
 	using namespace Sound;
 	using namespace Bullet;
 	using namespace Powerup;
-	using namespace Collision;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -30,7 +29,6 @@ namespace Global
 		sound_service = nullptr;
 		bullet_service = nullptr;
 		powerup_service = nullptr;
-		collision_service = nullptr;
 		createServices();
 	}
 
@@ -52,7 +50,6 @@ namespace Global
 		sound_service = new SoundService();
 		bullet_service = new BulletService();
 		powerup_service = new PowerupService();
-		collision_service = new CollisionService();
 	}
 
 	void ServiceLocator::clearAllServices()
@@ -67,8 +64,17 @@ namespace Global
 		delete(element_service);
 		delete(sound_service);
 		delete(bullet_service);
-		delete(powerup_service);
-		delete(collision_service);
+		graphic_service = nullptr;
+		time_service = nullptr;
+		event_service = nullptr;
+		player_service = nullptr;
+		ui_service = nullptr;
+		enemy_service = nullptr;
+		gameplay_service = nullptr;
+		element_service = nullptr;
+		sound_service = nullptr;
+		bullet_service = nullptr;
+		powerup_service = nullptr;
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -90,7 +96,6 @@ namespace Global
 		sound_service->initialize();
 		bullet_service->initialize();
 		powerup_service->initialize();
-		collision_service->initialize();
 	}
 
 	void ServiceLocator::update()
@@ -98,7 +103,7 @@ namespace Global
 		graphic_service->update();
 		time_service->update();
 		event_service->update();
-		
+		ui_service->update();
 
 		if (Main::GameService::getGameState() == GameState::GAMEPLAY)
 		{
@@ -107,16 +112,14 @@ namespace Global
 			enemy_service->update();
 			element_service->update();
 			bullet_service->update();
-			powerup_service->update();
-			collision_service->update();
 		}
-		ui_service->update();
+		
 	}
 
 	void ServiceLocator::render()
 	{
 		graphic_service->render();
-		
+		ui_service->render();
 		if (Main::GameService::getGameState() == GameState::GAMEPLAY)
 		{
 			gameplay_service->render();
@@ -124,9 +127,8 @@ namespace Global
 			enemy_service->render();
 			element_service->render();
 			bullet_service->render();
-			powerup_service->render();
+			
 		}
-		ui_service->render();
 	}
 
 	GraphicService* ServiceLocator::getGraphicService() 
@@ -182,11 +184,6 @@ namespace Global
 	PowerupService* ServiceLocator::getPowerupService()
 	{
 		return powerup_service;
-	}
-
-	CollisionService* ServiceLocator::getCollisionService()
-	{
-		return collision_service;
 	}
 
 	void ServiceLocator::deleteServiceLocator()

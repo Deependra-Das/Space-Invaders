@@ -37,7 +37,7 @@ namespace UI
 			UIView::render();
 
 			if (ui_state == UIState::VISIBLE)
-			{				
+			{
 				game_window->draw(text);
 			}
 

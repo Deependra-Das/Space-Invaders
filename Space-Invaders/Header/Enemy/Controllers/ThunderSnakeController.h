@@ -11,7 +11,7 @@ namespace Enemy
         private:
             
             const float thundersnake_horizontal_movement_speed = 250.0f;
-            float thundersnake_rate_of_fire = 2.0f;
+            float thundersnake_rate_of_fire = 5.0f;
 
             void move() override;
             void moveLeft();

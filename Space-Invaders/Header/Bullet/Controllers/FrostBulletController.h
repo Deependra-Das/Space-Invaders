@@ -12,7 +12,7 @@ namespace Bullet
 			float frostbullet_movement_speed = 500.0f;
 
 		public:
-			FrostBulletController(BulletType type, Entity::EntityType owner_type);
+			FrostBulletController(BulletType type);
 			~FrostBulletController();
 
 

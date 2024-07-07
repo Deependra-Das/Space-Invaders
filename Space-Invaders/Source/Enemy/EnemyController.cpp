@@ -1,23 +1,12 @@
 #include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Enemy/EnemyView.h"
 #include "../../Header/Enemy/EnemyModel.h"
-#include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
-#include "../../Header/Bullet/BulletConfig.h"
-#include "../../Header/Entity/EntityConfig.h"
-#include "../../Header/Bullet/BulletController.h"
-#include "../../Header/Player/PlayerController.h"
-#include "../../Header/Sound/SoundService.h"
+#include "../../Header/Enemy/EnemyConfig.h"
 
 namespace Enemy
 {
 	using namespace Global;
-	using namespace Time;
-	using namespace Bullet;
-	using namespace Collision;
-	using namespace Entity;
-	using namespace Player;
-	using namespace Sound;
 
 	EnemyController::EnemyController(EnemyType type)
 	{
@@ -29,6 +18,8 @@ namespace Enemy
 	{			
 		delete(enemy_view);
 		delete(enemy_model);
+		enemy_view = nullptr;
+		enemy_model = nullptr;
 	}
 
 	void EnemyController::initialize()
@@ -55,6 +46,63 @@ namespace Enemy
 	sf::Vector2f EnemyController::getEnemyPosition()
 	{
 		return enemy_model->getEnemyCurrentPostion();
+	}
+
+	void EnemyController::moveLeft()
+	{
+		sf::Vector2f current_position = enemy_model->getEnemyCurrentPostion();
+		current_position.x -= enemy_model->horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+		if (current_position.x <= enemy_model->left_most_position.x)
+		{
+			enemy_model->setMovementDirection(MovementDirection::DOWN);
+			enemy_model->setEnemyReferencePostion(current_position);
+		}
+		else
+		{
+			enemy_model->setEnemyCurrentPostion(current_position);
+		}
+	}
+
+	void EnemyController::moveRight()
+	{
+		sf::Vector2f current_position = enemy_model->getEnemyCurrentPostion();
+		current_position.x += enemy_model->horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+		if (current_position.x >= enemy_model->right_most_position.x)
+		{
+			enemy_model->setMovementDirection(MovementDirection::DOWN);
+			enemy_model->setEnemyReferencePostion(current_position);
+		}
+		else 
+		{
+			enemy_model->setEnemyCurrentPostion(current_position);
+		}
+	}
+
+	void EnemyController::moveDown()
+	{
+		sf::Vector2f current_position = enemy_model->getEnemyCurrentPostion();
+		current_position.y += enemy_model->horizontal_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+		if (current_position.y >= enemy_model->getEnemyReferencePostion().y + enemy_model->vertical_travel_distance)
+		{
+			if (enemy_model->getEnemyReferencePostion().x <= enemy_model->left_most_position.x)
+			{
+				enemy_model->setMovementDirection(MovementDirection::RIGHT);
+				
+			}
+			else if (enemy_model->getEnemyReferencePostion().x >= enemy_model->left_most_position.x)
+			{
+				enemy_model->setMovementDirection(MovementDirection::LEFT);
+			
+			}
+		}
+		else 
+		{
+			enemy_model->setEnemyCurrentPostion(current_position);
+
+		}
 	}
 
 	sf::Vector2f EnemyController::getRandomInitialPosition()
@@ -101,36 +149,4 @@ namespace Enemy
 		}
 	}
 
-	Entity::EntityType EnemyController::getOwnerEntityType()
-	{
-		return enemy_model->getOwnerEntityType();
-	}
-
-	const sf::Sprite& EnemyController::getColliderSprite()
-	{
-		return enemy_view->getEnemySprite();
-	}
-
-	void EnemyController::onCollision(ICollider* other_collider)
-	{
-		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
-		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
-		{
-			destroy();
-			return;
-		}
-
-		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
-		if (player_controller)
-		{
-			destroy();
-			return;
-		}
-	}
-
-	void EnemyController::destroy()
-	{
-		ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
-		ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
-	}
 }

@@ -9,7 +9,7 @@ namespace Bullet
 		class LaserBulletController : public BulletController
 		{
 		public:
-			LaserBulletController(BulletType type, Entity::EntityType owner_type);
+			LaserBulletController(BulletType type);
 			~LaserBulletController();
 
 		
