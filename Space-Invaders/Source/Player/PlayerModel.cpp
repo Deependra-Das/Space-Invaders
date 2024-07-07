@@ -2,10 +2,12 @@
 
 namespace Player
 {
+	int PlayerModel::player_lives;
+	int PlayerModel::enemies_killed;
 
-	PlayerModel::PlayerModel(Entity::EntityType type_of_owner)
+	PlayerModel::PlayerModel()
 	{
-		owner_type = type_of_owner;
+
 	}
 
 	PlayerModel::~PlayerModel()
@@ -23,6 +25,9 @@ namespace Player
 		player_state = PlayerState::ALIVE;
 		player_position = initial_player_position;
 		player_score = 0;
+
+		player_lives = max_player_lives;
+		enemies_killed = 0;
 
 		b_shield=false;
 		b_rapid_fire=false;

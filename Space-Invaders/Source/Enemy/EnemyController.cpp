@@ -19,10 +19,10 @@ namespace Enemy
 	using namespace Player;
 	using namespace Sound;
 
-	EnemyController::EnemyController(EnemyType type, Entity::EntityType owner_type)
+	EnemyController::EnemyController(EnemyType type)
 	{
 		enemy_view = new EnemyView();
-		enemy_model = new EnemyModel(type, owner_type);
+		enemy_model = new EnemyModel(type);
 	}
 
 	EnemyController::~EnemyController()
@@ -130,6 +130,7 @@ namespace Enemy
 
 	void EnemyController::destroy()
 	{
+		ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
 		ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 	}
 }

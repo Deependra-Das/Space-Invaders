@@ -20,7 +20,7 @@ namespace Enemy
             Powerup::PowerupType getRandomPowerupType();
 
         public:
-            UFOController(EnemyType type, Entity::EntityType owner_type);
+            UFOController(EnemyType type);
             ~UFOController();
 
             void initialize() override;

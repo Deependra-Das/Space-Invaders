@@ -17,11 +17,12 @@ namespace Powerup
 
         void ShieldController::onCollected()
         {
+            applyPowerup();
         }
 
         void ShieldController::applyPowerup()
         {
-            ServiceLocator::getInstance()->getEnemyService()->reset();
+            ServiceLocator::getInstance()->getPlayerService()->enableShield();
         }
     }
 }

@@ -17,11 +17,12 @@ namespace Powerup
 
         void RapidFireController::onCollected()
         {
+            applyPowerup();
         }
 
         void RapidFireController::applyPowerup()
         {
-            ServiceLocator::getInstance()->getEnemyService()->reset();
+            ServiceLocator::getInstance()->getPlayerService()->enableRapidFire();
         }
     }
 }

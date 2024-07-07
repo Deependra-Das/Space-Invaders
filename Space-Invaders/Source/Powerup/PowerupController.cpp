@@ -82,7 +82,7 @@ namespace Powerup
 	void PowerupController::onCollision(ICollider* other_collider)
 	{
 		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
-
+	
 		if (player_controller)
 		{
 			onCollected();

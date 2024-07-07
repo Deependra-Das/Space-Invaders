@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../../Header/Entity/EntityConfig.h"
+#include "../../header/UI/GameplayUI/GameplayUIController.h"
 
 namespace Player
 {
@@ -16,6 +17,15 @@ namespace Player
     {
     private:
 
+        friend class PlayerController; 
+
+        friend void UI::GameplayUI::GameplayUIController::updateEnemiesKilledText();
+        friend void UI::GameplayUI::GameplayUIController::drawPlayerLivesImage();
+
+        const int max_player_lives = 3;
+        static int player_lives;
+        static int enemies_killed;
+       
         const sf::Vector2f initial_player_position = sf::Vector2f(950.0f, 950.0f);
         sf::Vector2f player_position;
         PlayerState player_state;
@@ -30,11 +40,11 @@ namespace Player
 
         const sf::Vector2f left_most_position = sf::Vector2f(50.0f, 950.0f);
         const sf::Vector2f right_most_position = sf::Vector2f(1800.0f, 950.0f);
-        const sf::Vector2f barrel_position_offset = sf::Vector2f(-20.f, 50.f);
+        const sf::Vector2f barrel_position_offset = sf::Vector2f(20.f, 5.f);
         const sf::Vector2f second_weapon_position_offset = sf::Vector2f(45.f, 0.f);
         const sf::Vector2f third_weapon_position_offset = sf::Vector2f(-45.f, 0.f);
 
-        const float shiled_powerup_duration = 10.f;
+        const float shield_powerup_duration = 10.f;
         const float rapid_fire_powerup_duration = 10.f;
         const float tripple_laser_powerup_duration = 10.f;
 
@@ -52,8 +62,9 @@ namespace Player
         float elapsed_freeze_duration;
 
         const float player_movement_speed = 350.0f;
+        static const int invincible_player_alpha = 170.f;
 
-        PlayerModel(Entity::EntityType owner_type);
+        PlayerModel();
         ~PlayerModel();
 
         void initialize();

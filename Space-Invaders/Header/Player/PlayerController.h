@@ -45,7 +45,7 @@ namespace Player
 		void disableTrippleLaser();
 
 	public:
-		PlayerController(Entity::EntityType owner_type);
+		PlayerController();
 		~PlayerController();
 
 		void initialize();
@@ -65,5 +65,8 @@ namespace Player
 		void onCollision(ICollider* other_collider) override;
 
 		Entity::EntityType getOwnerEntityType();
+
+		void decreasePlayerLive();
+		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
 	};
 }

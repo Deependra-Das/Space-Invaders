@@ -29,7 +29,7 @@ namespace Enemy
 
 		const float vertical_travel_distance = 100.0f;
 
-		EnemyModel(EnemyType type, Entity::EntityType owner_type);
+		EnemyModel(EnemyType type);
 		~EnemyModel();
 
 		void initialize();

@@ -107,6 +107,8 @@ namespace Global
 			enemy_service->update();
 			element_service->update();
 			bullet_service->update();
+			powerup_service->update();
+			collision_service->update();
 		}
 		
 	}
@@ -122,7 +124,7 @@ namespace Global
 			enemy_service->render();
 			element_service->render();
 			bullet_service->render();
-			
+			powerup_service->render();
 		}
 	}
 

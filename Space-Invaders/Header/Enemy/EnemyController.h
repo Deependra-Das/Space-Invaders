@@ -32,7 +32,7 @@ namespace Enemy
 		virtual void destroy();
 
 	public:
-		EnemyController(EnemyType type, Entity::EntityType owner_type);
+		EnemyController(EnemyType type);
 		virtual ~EnemyController();
 
 		void virtual initialize();

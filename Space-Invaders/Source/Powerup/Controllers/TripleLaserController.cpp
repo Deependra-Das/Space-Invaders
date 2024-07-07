@@ -17,11 +17,12 @@ namespace Powerup
 
         void TripleLaserController::onCollected()
         {
+            applyPowerup();
         }
 
         void TripleLaserController::applyPowerup()
         {
-            ServiceLocator::getInstance()->getEnemyService()->reset();
+            ServiceLocator::getInstance()->getPlayerService()->enableTrippleLaser();
         }
     }
 }

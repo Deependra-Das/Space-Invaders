@@ -53,7 +53,7 @@ namespace Enemy
 
 	EnemyController* EnemyService::SpawnEnemy()
 	{
-		EnemyController* enemy_controller = createEnemy(getRandomEnemyType(), Entity::EntityType::ENEMY);
+		EnemyController* enemy_controller = createEnemy(getRandomEnemyType());
 		enemy_controller->initialize();
 
 		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(enemy_controller));
@@ -75,21 +75,21 @@ namespace Enemy
 		spawn_timer += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 	}
 
-	EnemyController* EnemyService::createEnemy(EnemyType enemy_type, Entity::EntityType owner_type)
+	EnemyController* EnemyService::createEnemy(EnemyType enemy_type)
 	{
 		switch (enemy_type)
 		{
 		case::Enemy::EnemyType::SUBZERO:
-			return new SubZeroController(Enemy::EnemyType::SUBZERO, owner_type);
+			return new SubZeroController(Enemy::EnemyType::SUBZERO);
 
 		case::Enemy::EnemyType::ZAPPER:
-			return new ZapperController(Enemy::EnemyType::ZAPPER, owner_type);
+			return new ZapperController(Enemy::EnemyType::ZAPPER);
 
 		case::Enemy::EnemyType::THUNDER_SNAKE:
-			return new ThunderSnakeController(Enemy::EnemyType::THUNDER_SNAKE, owner_type);
+			return new ThunderSnakeController(Enemy::EnemyType::THUNDER_SNAKE);
 
 		case::Enemy::EnemyType::UFO:
-			return new UFOController(Enemy::EnemyType::UFO, owner_type);
+			return new UFOController(Enemy::EnemyType::UFO);
 
 		}
 	}

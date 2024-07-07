@@ -20,9 +20,9 @@ namespace Player
 	using namespace Enemy;
 	using namespace Powerup;
 
-	PlayerController::PlayerController(Entity::EntityType owner_type)
+	PlayerController::PlayerController()
 	{
-		player_model = new PlayerModel(owner_type);
+		player_model = new PlayerModel();
 		player_view = new PlayerView();;
 	}
 
@@ -30,8 +30,6 @@ namespace Player
 	{
 		delete(player_model);
 		delete(player_view);
-		player_model = nullptr;
-		player_view = nullptr;
 	}
 
 	void PlayerController::processPlayerInput()
@@ -122,6 +120,11 @@ namespace Player
 		return player_view->getPlayerSprite();
 	}
 
+	PlayerState PlayerController::getPlayerState()
+	{
+		return player_model->getPlayerState();
+	}
+
 	void PlayerController::onCollision(ICollider* other_collider)
 	{
 		if (processPowerupCollision(other_collider))
@@ -150,12 +153,11 @@ namespace Player
 		{
 			if (bullet_controller->getBulletType() == BulletType::FROST_BULLET)
 			{
-				player_model->setPlayerState(PlayerState::FROZEN);
-				player_model->elapsed_freeze_duration = player_model->freeze_duration;
+				freezePlayer();
 			}
 			else
 			{
-				ServiceLocator::getInstance()->getGameplayService()->restart();
+				decreasePlayerLive();
 			}
 			return true;
 		}
@@ -171,7 +173,7 @@ namespace Player
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
 		if (enemy_controller)
 		{
-			ServiceLocator::getInstance()->getGameplayService()->restart();
+			decreasePlayerLive();
 			return true;
 		}
 		return false;
@@ -224,7 +226,7 @@ namespace Player
 
 	void PlayerController::enableShield()
 	{
-		player_model->elapsed_shield_duration = player_model->shiled_powerup_duration;
+		player_model->elapsed_shield_duration = player_model->shield_powerup_duration;
 		player_model->setShieldState(true);
 	}
 
@@ -264,16 +266,24 @@ namespace Player
 	}
 
 	void PlayerController::updateFreezeDuration()
-	{
+	{		
 		if (player_model->elapsed_freeze_duration > 0)
 		{
-			player_model->elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			player_model->elapsed_freeze_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 			if (player_model->elapsed_freeze_duration <= 0)
 			{
 				player_model->setPlayerState(PlayerState::ALIVE);
+				player_view->setPlayerHighlight(false);
 			}
 		}
+	}
+
+	void PlayerController::freezePlayer()
+	{
+		player_model->setPlayerState(PlayerState::FROZEN);
+		player_model->elapsed_freeze_duration = player_model->freeze_duration;
+		player_view->setPlayerHighlight(true);
 	}
 
 	void PlayerController::processBulletFire()
@@ -317,7 +327,16 @@ namespace Player
 	void PlayerController::fireBullet(sf::Vector2f position)
 	{
 		ServiceLocator::getInstance()->getBulletService()->spawnBullet(BulletType::LASER_BULLET,
-			player_model->getOwnerEntityType(), position, Bullet::MovementDirection::UP);
+			Entity::EntityType::PLAYER , position, Bullet::MovementDirection::UP);
+	}
+
+	void PlayerController::decreasePlayerLive()
+	{
+		PlayerModel::player_lives -= 1;
+		if (PlayerModel::player_lives <= 0)
+		{
+			reset();
+		}
 	}
 
 }

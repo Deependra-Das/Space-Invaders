@@ -19,7 +19,7 @@ namespace Enemy
 		void updateSpawnTimer();
 		void processEnemySpawn();
 		EnemyType getRandomEnemyType();
-		EnemyController* createEnemy(EnemyType enemy_type, Entity::EntityType owner_type);
+		EnemyController* createEnemy(EnemyType enemy_type);
 
 		void destroyFlaggedEnemies();
 		void destroy();

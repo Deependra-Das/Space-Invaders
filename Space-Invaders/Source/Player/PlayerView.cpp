@@ -60,4 +60,10 @@ namespace Player
 		return player_image->getSprite();
 	}
 
+	void PlayerView::setPlayerHighlight(bool b_highlight)
+	{
+		if (b_highlight) player_image->setImageAlpha(PlayerModel::invincible_player_alpha);
+		else player_image->setImageAlpha(255);
+	}
+
 }

@@ -22,5 +22,6 @@ namespace Player
 		void enableTrippleLaser();
 
 		void reset();
+		void increaseEnemiesKilled(int val);
 	};
 }
