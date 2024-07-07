@@ -46,7 +46,6 @@ namespace Powerup
 		powerup_image->render();
 	}
 
-
 	sf::String PowerupView::getPowerupTexturePath()
 	{
 		switch (powerup_controller->getPowerupType())
@@ -68,6 +67,11 @@ namespace Powerup
 	void PowerupView::destroy()
 	{
 		delete(powerup_image);
+	}
+
+	const sf::Sprite& PowerupView::getPowerupSprite()
+	{
+		return powerup_image->getSprite();
 	}
 
 

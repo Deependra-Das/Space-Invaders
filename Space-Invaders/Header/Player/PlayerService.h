@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../Header/Player/PlayerController.h"
-
 namespace Player
 {
+	class PlayerController;
+
 	class PlayerService
 	{
 	private:
@@ -16,5 +16,12 @@ namespace Player
 		void initialize();
 		void update();
 		void render();
+
+		void enableShield();
+		void enableRapidFire();
+		void enableTrippleLaser();
+
+		void reset();
+		void increaseEnemiesKilled(int val);
 	};
 }
