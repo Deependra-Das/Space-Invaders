@@ -98,7 +98,7 @@ namespace Global
 		graphic_service->update();
 		time_service->update();
 		event_service->update();
-		ui_service->update();
+		
 
 		if (Main::GameService::getGameState() == GameState::GAMEPLAY)
 		{
@@ -110,13 +110,13 @@ namespace Global
 			powerup_service->update();
 			collision_service->update();
 		}
-		
+		ui_service->update();
 	}
 
 	void ServiceLocator::render()
 	{
 		graphic_service->render();
-		ui_service->render();
+		
 		if (Main::GameService::getGameState() == GameState::GAMEPLAY)
 		{
 			gameplay_service->render();
@@ -126,6 +126,7 @@ namespace Global
 			bullet_service->render();
 			powerup_service->render();
 		}
+		ui_service->render();
 	}
 
 	GraphicService* ServiceLocator::getGraphicService() 

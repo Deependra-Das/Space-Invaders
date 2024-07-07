@@ -29,7 +29,6 @@ namespace UI
         void GameplayUIController::createUIElements()
         {
             player_image = new ImageView();
-
             enemies_killed_text = new TextView();
         }
 
@@ -40,37 +39,30 @@ namespace UI
 
         void GameplayUIController::initializeText()
         {
-
             sf::String enemies_killed_string = "Enemies Killed  :  0";
-
-
             enemies_killed_text->initialize(enemies_killed_string, sf::Vector2f(enemies_killed_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size, text_color);
         }
 
         void GameplayUIController::update()
         {
-
             updateEnemiesKilledText();
         }
 
         void GameplayUIController::render()
         {
-
             enemies_killed_text->render();
             drawPlayerLivesImage();
         }
 
         void GameplayUIController::show() 
         { 
-            player_image->show();
-            enemies_killed_text->show();
         }
 
 
 
         void GameplayUIController::updateEnemiesKilledText()
         {
-            sf::String enemies_killed_string = "Enemies Killed  :  " + std::to_string(PlayerModel::enemies_killed);
+            sf::String enemies_killed_string = "Enemies Killed  :  "+ std::to_string(PlayerModel::enemies_killed);
             enemies_killed_text->setText(enemies_killed_string);
         }
 
@@ -88,7 +80,6 @@ namespace UI
         void GameplayUIController::destroy()
         {
             delete(player_image);
-
             delete(enemies_killed_text);
         }
     }

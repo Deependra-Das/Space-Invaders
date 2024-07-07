@@ -30,6 +30,7 @@ namespace UI
 
 	void UIService::initialize()
 	{
+		TextView::initializeTextView();
 		initializeControllers();
 	}
 
