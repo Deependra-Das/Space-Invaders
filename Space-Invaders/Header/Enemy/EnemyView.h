@@ -30,7 +30,6 @@ namespace Enemy
 		void update();
 		void render();
 
-		const sf::Sprite& getEnemySprite();
 	};
 
 }

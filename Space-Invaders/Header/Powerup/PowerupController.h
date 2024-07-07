@@ -2,7 +2,6 @@
 
 #include "../../Header/Collectible/ICollectible.h"
 #include "../../Header/Powerup/PowerupConfig.h"
-#include "../../Header/Collision/ICollider.h"
 
 namespace Powerup
 {
@@ -10,13 +9,12 @@ namespace Powerup
 	class PowerupModel;
 	enum class PowerupType;
 
-	class PowerupController:public Collectible::ICollectible, public Collision::ICollider
+	class PowerupController:public Collectible::ICollectible
 	{
 	private:
 		PowerupView* powerup_view;
 		PowerupModel* powerup_model;
 
-		virtual void applyPowerup() = 0;
 		void updatePowerupPosition();
 		void handleOutOfBounds();
 
@@ -32,8 +30,5 @@ namespace Powerup
 		void onCollected() override;
 
 		PowerupType getPowerupType();
-
-		const sf::Sprite& getColliderSprite() override;
-		void onCollision(ICollider* other_collider) override;
 	};
 }
