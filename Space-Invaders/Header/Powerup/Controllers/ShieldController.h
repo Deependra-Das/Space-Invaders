@@ -13,6 +13,8 @@ namespace Powerup
             virtual ~ShieldController();
 
             void onCollected() override;
+
+            void applyPowerup();
         };
     }
 }

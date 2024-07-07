@@ -29,5 +29,9 @@ namespace Player
 		void initialize(PlayerController* controller);
 		void update();
 		void render();
+
+		const sf::Sprite& getPlayerSprite();
+		void setPlayerHighlight(bool b_highlight);
+		void setPlayerShield(bool b_highlight);
 	};
 }

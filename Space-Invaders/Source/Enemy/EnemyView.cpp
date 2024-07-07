@@ -74,5 +74,10 @@ namespace Enemy
 		delete(enemy_image);
 	}
 
+	const sf::Sprite& EnemyView::getEnemySprite()
+	{
+		return enemy_image->getSprite();
+	}
+
 
 }
