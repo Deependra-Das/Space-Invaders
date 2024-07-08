@@ -1,0 +1,53 @@
+#pragma once
+
+#include <functional>
+#include "../../Header/UI/UIElement/ImageView.h"
+
+namespace UI
+{
+	namespace UIElement
+	{
+		enum class AnimationType
+		{
+			FADE_IN,
+			FADE_OUT,
+		};
+
+		class AnimatedImageView:public ImageView
+		{
+		private:
+			using CallbackFunction = std::function<void()>;
+			CallbackFunction callback_function = nullptr;
+
+			void updateElapsedDuration();
+			void handleAnimationProgress();
+			void updateAnimation();
+
+		protected:
+			const float default_animation_duration = 2.0f;
+			AnimationType animation_type;
+			float animation_duration;
+			float elapsed_duration;
+			sf::Clock clock;
+
+			void reset();
+			void setAnimationDuration(float duration);
+			void setAnimationType(AnimationType type);
+
+			virtual void fadeIn();
+			virtual void fadeOut();
+
+		public:
+			AnimatedImageView();
+			~AnimatedImageView();
+
+			void initialize(sf::String texture_path, float image_width, float image_height, sf::Vector2f position) override;
+			void update() override;
+			void render() override;
+
+			void playAnimation(AnimationType type, float duration, CallbackFunction animation_end_callback);
+			void registerCallbackFuntion(CallbackFunction animation_end_callback);
+
+		};
+	}
+}
