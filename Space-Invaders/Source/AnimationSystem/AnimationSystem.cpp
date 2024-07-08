@@ -1,7 +1,7 @@
 #include "../../Header/AnimationSystem/AnimationSystem.h"
 #include "../../Header/Global/Config.h"
 #include "../../Header/Global/ServiceLocator.h"
-//#include "../../Header/AnimationSystem/AnimationService.h"
+#include "../../Header/AnimationSystem/AnimationService.h"
 
 namespace Animation
 {
@@ -67,6 +67,6 @@ namespace Animation
 
 	void AnimationSystem::destroy()
 	{
-		//ServiceLocator::getInstance()->getAnimationService()->destroyAnimationSystem(this);
+		ServiceLocator::getInstance()->getAnimationService()->destroyAnimationSystem(this);
 	}
 }
