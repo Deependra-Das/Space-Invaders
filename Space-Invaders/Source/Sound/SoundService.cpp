@@ -27,6 +27,10 @@ namespace Sound
 		{
 			printf("Error loading sound file.");
 		}
+		if (!buffer_explosion.loadFromFile(Config::explosion_sound_path))
+		{
+			printf("Error loading sound file.");
+		}
 			
 	}
 
@@ -37,6 +41,11 @@ namespace Sound
 		case SoundType::BUTTON_CLICK:
 			sound_effect.setBuffer(buffer_button_click);
 			break;
+
+		case SoundType::EXPLOSION:
+			sound_effect.setBuffer(buffer_explosion);
+			break;
+
 		default:
 			printf("Invalid sound type");
 			return;
