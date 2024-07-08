@@ -7,8 +7,11 @@ namespace Main
 	enum class GameState 
 	{
 		BOOT,
+		SPLASH_SCREEN,
 		MAIN_MENU,
-		GAMEPLAY
+		INSTRUCTIONS,
+		GAMEPLAY,
+		CREDITS,
 	};
 
 	class GameService
@@ -21,7 +24,7 @@ namespace Main
 		void initialize();
 		void initializeVariables();
 		void destroy();
-
+		void showSplashScreen();
 		void showMainMenu();
 
 	public:
