@@ -8,6 +8,7 @@
 #include "../../Header/Enemy/Controllers/ThunderSnakeController.h"
 #include "../../Header/Enemy/Controllers/UFOController.h"
 #include "../../Header/Collision/ICollider.h"
+#include "../../Header/Sound/SoundService.h"
 
 namespace Enemy
 {
@@ -15,6 +16,7 @@ namespace Enemy
 	using namespace Time;
 	using namespace Controller;
 	using namespace Collision;
+	using namespace Sound;
 
 	EnemyService::EnemyService()
 	{
@@ -120,8 +122,12 @@ namespace Enemy
 
 	void EnemyService::destroy()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::EXPLOSION);
+		
 		for (int i = 0; i < enemy_list.size(); i++)
 		{
+			ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(enemy_list[i]->getEnemyPosition(), Animation::AnimationType::EXPLOSION);
+
 			ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(enemy_list[i]));
 			delete (enemy_list[i]);
 		}

@@ -31,6 +31,18 @@ namespace Sound
 		{
 			printf("Error loading sound file.");
 		}
+		if (!buffer_bullet_fire.loadFromFile(Config::bullet_fire_sound_path))
+		{
+			printf("Error loading sound file.");
+		}
+		if (!buffer_power_enabled.loadFromFile(Config::powerup_enabled_sound_path))
+		{
+			printf("Error loading sound file.");
+		}
+		if (!buffer_power_disabled.loadFromFile(Config::powerup_disabled_sound_path))
+		{
+			printf("Error loading sound file.");
+		}
 			
 	}
 
@@ -44,6 +56,18 @@ namespace Sound
 
 		case SoundType::EXPLOSION:
 			sound_effect.setBuffer(buffer_explosion);
+			break;
+
+		case SoundType::BULLET_FIRE:
+			sound_effect.setBuffer(buffer_bullet_fire);
+			break;
+
+		case SoundType::POWERUP_ENABLED:
+			sound_effect.setBuffer(buffer_power_enabled);
+			break;
+
+		case SoundType::POWERUP_DISABLED:
+			sound_effect.setBuffer(buffer_power_disabled);
 			break;
 
 		default:

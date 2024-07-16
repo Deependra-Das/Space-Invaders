@@ -7,7 +7,10 @@ namespace Sound
 	enum class SoundType
 	{
 		BUTTON_CLICK,
-		EXPLOSION
+		EXPLOSION,
+		BULLET_FIRE,
+		POWERUP_ENABLED,
+		POWERUP_DISABLED,
 	};
 
 	class SoundService
@@ -19,6 +22,9 @@ namespace Sound
 		sf::Sound sound_effect;
 		sf::SoundBuffer buffer_button_click;
 		sf::SoundBuffer buffer_explosion;
+		sf::SoundBuffer buffer_bullet_fire;
+		sf::SoundBuffer buffer_power_enabled;
+		sf::SoundBuffer buffer_power_disabled;
 
 		void loadBackgroundMusicFromFile();
 		void loadSoundFromFile();

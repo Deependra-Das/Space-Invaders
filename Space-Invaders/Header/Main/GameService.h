@@ -9,9 +9,11 @@ namespace Main
 		BOOT,
 		SPLASH_SCREEN,
 		MAIN_MENU,
+		PAUSE_MENU,
 		INSTRUCTIONS,
 		GAMEPLAY,
 		CREDITS,
+		GAME_OVER,
 	};
 
 	class GameService

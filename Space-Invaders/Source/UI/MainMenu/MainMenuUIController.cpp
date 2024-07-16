@@ -29,6 +29,7 @@ namespace UI
         void MainMenuUIController::initialize()
         {
             initializeBackgroundImage();
+            initializeGameLogoImage();
             initializeButtons();
             registerButtonCallback();
         }
@@ -36,6 +37,7 @@ namespace UI
         void MainMenuUIController::createImage()
         {
             background_image = new ImageView();
+            game_logo_view = new ImageView();
         }
 
         void MainMenuUIController::createButtons()
@@ -51,6 +53,12 @@ namespace UI
 
             background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
             background_image->setImageAlpha(background_image_alpha);
+        }
+
+        void MainMenuUIController::initializeGameLogoImage()
+        {
+            game_logo_view->initialize(Config::space_invaders_logo_texture_path, game_logo_width, game_logo_height, sf::Vector2f(0, game_logo_y_position));
+            game_logo_view->setCentreAlinged();
         }
 
         void MainMenuUIController::initializeButtons()
@@ -81,6 +89,7 @@ namespace UI
         void MainMenuUIController::instructionsButtonCallback()
         {
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+            GameService::setGameState(GameState::INSTRUCTIONS);
         }
 
         void MainMenuUIController::quitButtonCallback()
@@ -91,6 +100,7 @@ namespace UI
         void MainMenuUIController::update()
         {
             background_image->update();
+            game_logo_view->update();
             play_button->update();
             instructions_button->update();
             quit_button->update();
@@ -99,6 +109,7 @@ namespace UI
         void MainMenuUIController::render()
         {
             background_image->render();
+            game_logo_view->render();
             play_button->render();
             instructions_button->render();
             quit_button->render();
@@ -107,11 +118,11 @@ namespace UI
         void MainMenuUIController::show()
         {
             background_image->show();
+            game_logo_view->show();
             play_button->show();
             instructions_button->show();
             quit_button->show();
 
-            ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
         }
 
         void MainMenuUIController::destroy()
@@ -120,6 +131,7 @@ namespace UI
             delete (instructions_button);
             delete (quit_button);
             delete (background_image);
+            delete (game_logo_view);
         }
     }
 }
