@@ -179,8 +179,11 @@
     <ClCompile Include="Source\Powerup\PowerupView.cpp" />
     <ClCompile Include="Source\Sound\SoundService.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
+    <ClCompile Include="Source\UI\GameOverMenu\GameOverUIController.cpp" />
     <ClCompile Include="Source\UI\GameplayUI\GameplayUIController.cpp" />
+    <ClCompile Include="Source\UI\Instructions\InstructionsUIController.cpp" />
     <ClCompile Include="Source\UI\MainMenu\MainMenuUIController.cpp" />
+    <ClCompile Include="Source\UI\PauseMenu\PauseMenuUIController.cpp" />
     <ClCompile Include="Source\UI\SplashScreen\SplashScreenUIController.cpp" />
     <ClCompile Include="Source\UI\UIElement\AnimatedImageView.cpp" />
     <ClCompile Include="Source\UI\UIElement\ButtonView.cpp" />
@@ -243,9 +246,12 @@
     <ClInclude Include="Header\Projectile\IProjectile.h" />
     <ClInclude Include="Header\Sound\SoundService.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
+    <ClInclude Include="Header\UI\GameOverMenu\GameOverUIController.h" />
     <ClInclude Include="Header\UI\GameplayUI\GameplayUIController.h" />
+    <ClInclude Include="Header\UI\Instructions\InstructionsUIController.h" />
     <ClInclude Include="Header\UI\Interface\IUIController.h" />
     <ClInclude Include="Header\UI\MainMenu\MainMenuUIController.h" />
+    <ClInclude Include="Header\UI\PauseMenu\PauseMenuUIController.h" />
     <ClInclude Include="Header\UI\SplashScreen\SplashScreenUIController.h" />
     <ClInclude Include="Header\UI\UIElement\AnimatedImageView.h" />
     <ClInclude Include="Header\UI\UIElement\ButtonView.h" />

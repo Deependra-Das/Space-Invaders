@@ -45,8 +45,12 @@ namespace Animation
 	{
 		switch (animation_type)
 		{
-		case Animation::AnimationType::EXPLOSION:
-			return explosion_animation_config;
+			case Animation::AnimationType::EXPLOSION:
+			{
+				const AnimationSystemConfig explosion_animation_config(Global::Config::explosion_texture_path, 70.0f, 80.0f, 14.28f, 20.0f, 7, 0.03f);
+				return explosion_animation_config;
+			}
+			  
 		}
 	}
 

@@ -28,12 +28,12 @@ namespace Event
     void EventService::processEvents()
     {
         if (isGameWindowOpen()) {
-            while (game_window->pollEvent(game_event)) {
-
+            while (game_window->pollEvent(game_event)) 
+            {
                 if (gameWindowWasClosed() || hasQuitGame())
                 {
                     game_window->close();
-                }
+                }                               
             }
         }
     }
@@ -51,6 +51,11 @@ namespace Event
     bool EventService::pressedEscapeKey() 
     {
         return game_event.key.code == sf::Keyboard::Escape;
+    }
+
+    bool EventService::pressedPKey()
+    {
+        return game_event.key.code == sf::Keyboard::P;
     }
 
     bool EventService::isGameWindowOpen() 

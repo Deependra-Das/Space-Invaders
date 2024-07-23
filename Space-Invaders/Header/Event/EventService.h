@@ -38,6 +38,7 @@ namespace Event
 			void update();
 			void processEvents(); 
 			bool pressedEscapeKey();
+			bool pressedPKey();
 			bool isKeyboardEvent();
 			bool pressedLeftKey();
 			bool pressedRightKey();

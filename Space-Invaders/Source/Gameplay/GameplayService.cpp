@@ -1,6 +1,7 @@
 #include "../../Header/Gameplay/GameplayService.h"
 #include "../../Header/Gameplay/GameplayController.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../Header/Main/GameService.h"
 
 namespace Gameplay
 {
@@ -9,6 +10,8 @@ namespace Gameplay
 	using namespace Enemy;
 	using namespace Element;
 	using namespace Bullet;
+	using namespace Main;
+	using namespace Event;
 
 	GameplayService::GameplayService()
 	{
@@ -28,6 +31,7 @@ namespace Gameplay
 
 	void GameplayService::update()
 	{
+		processPlayerInput();
 		gameplay_Controller->update();
 	}
 
@@ -42,5 +46,21 @@ namespace Gameplay
 		ServiceLocator::getInstance()->getEnemyService()->reset();
 		ServiceLocator::getInstance()->getBulletService()->reset();
 		ServiceLocator::getInstance()->getElementService()->reset();
+	}
+
+	void GameplayService::pauseGameplay()
+	{
+		GameService::setGameState(GameState::PAUSE_MENU);
+	}
+
+	void GameplayService::processPlayerInput()
+	{
+		EventService* event_service = ServiceLocator::getInstance()->getEventService();
+
+		if (event_service->pressedPKey())
+		{
+			pauseGameplay();
+		}
+
 	}
 }

@@ -35,7 +35,8 @@ namespace Animation
 
 	void AnimationSystem::initializeImage()
 	{
-		animation_image->initialize(Config::explosion_texture_path, 0, 0, animation_position);
+		animation_image->initialize(animation_system_config.Animation_texture_path, 0, 0, animation_position);
+
 		animation_image->setTextureRect(sf::IntRect(0, 0, animation_system_config.tile_width, animation_system_config.tile_height));
 
 		animation_image->setScale(animation_system_config.sprite_sheet_width, animation_system_config.sprite_sheet_height, animation_system_config.tile_width, animation_system_config.tile_height);
@@ -51,11 +52,7 @@ namespace Animation
 			current_frame = (current_frame + 1) % animation_system_config.number_of_animation_frames;
 			clock.restart();
 
-			animation_image->setTextureRect(sf::IntRect(
-				current_frame * animation_system_config.tile_width,
-				0,
-				animation_system_config.tile_width,
-				animation_system_config.tile_height));
+			animation_image->setTextureRect(sf::IntRect(current_frame * animation_system_config.tile_width,0,animation_system_config.tile_width,animation_system_config.tile_height));
 		}
 		animation_image->update();
 	}

@@ -8,6 +8,8 @@
 #include "../../Header/Bullet/BulletController.h"
 #include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Powerup/PowerupController.h"
+#include "../../Header/Sound/SoundService.h"
+#include "../../Header/Main/GameService.h"
 #include<algorithm>
 
 namespace Player
@@ -19,6 +21,8 @@ namespace Player
 	using namespace Entity;
 	using namespace Enemy;
 	using namespace Powerup;
+	using namespace Sound;
+	using namespace Main;
 
 	PlayerController::PlayerController()
 	{
@@ -179,7 +183,6 @@ namespace Player
 		return false;
 	}
 
-
 	bool PlayerController::processPowerupCollision(ICollider* other_collider)
 	{
 		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
@@ -226,34 +229,40 @@ namespace Player
 
 	void PlayerController::enableShield()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_ENABLED);
 		player_model->elapsed_shield_duration = player_model->shield_powerup_duration;
 		player_model->setShieldState(true);
 	}
 
 	void PlayerController::disableShield()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_DISABLED);
 		player_model->setShieldState(false);
 	}
 
 	void PlayerController::enableRapidFire()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_ENABLED);
 		player_model->elapsed_rapid_fire_duration = player_model->rapid_fire_powerup_duration;
 		player_model->setRapidFireState(true);
 	}
 
 	void PlayerController::disableRapidFire()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_DISABLED);
 		player_model->setRapidFireState(false);
 	}
 
 	void PlayerController::enableTrippleLaser()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_ENABLED);
 		player_model->elapsed_tripple_laser_duration = player_model->tripple_laser_powerup_duration;
 		player_model->setTrippleFireState(true);
 	}
 
 	void PlayerController::disableTrippleLaser()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::POWERUP_DISABLED);
 		player_model->setTrippleFireState(false);
 	}
 
@@ -281,6 +290,7 @@ namespace Player
 
 	void PlayerController::freezePlayer()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::FROZEN);
 		player_model->setPlayerState(PlayerState::FROZEN);
 		player_model->elapsed_freeze_duration = player_model->freeze_duration;
 		player_view->setPlayerHighlight(true);
@@ -322,6 +332,8 @@ namespace Player
 			fireBullet(bullet_position + player_model->second_weapon_position_offset);
 			fireBullet(bullet_position + player_model->third_weapon_position_offset);
 		}
+
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BULLET_FIRE);
 	}
 
 	void PlayerController::fireBullet(sf::Vector2f position)
@@ -333,10 +345,17 @@ namespace Player
 	void PlayerController::decreasePlayerLive()
 	{
 		PlayerModel::player_lives -= 1;
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::PLAYER_DAMAGE);
+
 		if (PlayerModel::player_lives <= 0)
 		{
-			reset();
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::EXPLOSION);
+			GameService::setGameState(GameState::GAME_OVER);
 		}
 	}
 
+	 bool PlayerController::isShieldEnabled()
+	{
+		 return player_model->isShieldEnabled();
+	}
 }

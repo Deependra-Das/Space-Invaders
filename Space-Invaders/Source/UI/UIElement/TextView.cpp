@@ -9,6 +9,7 @@ namespace UI
 
 		sf::Font TextView::font_bubble_bobble;
 		sf::Font TextView::font_DS_DIGIB;
+		sf::Font TextView::font_Rajdhani;
 
 		TextView::TextView() = default;
 
@@ -52,6 +53,7 @@ namespace UI
 		{
 			font_bubble_bobble.loadFromFile(Config::bubble_bobble_font_path);
 			font_DS_DIGIB.loadFromFile(Config::DS_DIGIB_font_path);
+			font_Rajdhani.loadFromFile(Config::Rajdhani_font_path);
 		}
 
 		void TextView::setFont(FontType font_type)
@@ -63,6 +65,9 @@ namespace UI
 				break;
 			case FontType::DS_DIGIB:
 				text.setFont(font_DS_DIGIB);
+				break;
+			case FontType::Rajdhani:
+				text.setFont(font_Rajdhani);
 				break;
 			}
 		}

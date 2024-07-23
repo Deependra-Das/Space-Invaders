@@ -58,6 +58,8 @@ namespace Player
 		void enableRapidFire();
 		void enableTrippleLaser();
 
+		bool isShieldEnabled();
+
 		sf::Vector2f getPlayerPosition();
 		PlayerState getPlayerState();
 

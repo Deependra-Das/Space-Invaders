@@ -18,5 +18,8 @@ namespace Gameplay
 		void render();
 		
 		void restart();
+
+		void pauseGameplay();
+		void processPlayerInput();
 	};
 }
