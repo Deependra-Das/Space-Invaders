@@ -83,16 +83,13 @@ namespace UI
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
             ServiceLocator::getInstance()->getGameplayService()->restart();
             GameService::setGameState(GameState::GAMEPLAY);
-            ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
         }
 
         void GameOverUIController::MenuButtonCallback()
         {
             ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
-            ServiceLocator::getInstance()->getPlayerService()->reset();
             ServiceLocator::getInstance()->getGameplayService()->restart();
             GameService::setGameState(GameState::MAIN_MENU);
-            ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
 
         }
 

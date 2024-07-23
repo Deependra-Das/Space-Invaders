@@ -290,6 +290,7 @@ namespace Player
 
 	void PlayerController::freezePlayer()
 	{
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::FROZEN);
 		player_model->setPlayerState(PlayerState::FROZEN);
 		player_model->elapsed_freeze_duration = player_model->freeze_duration;
 		player_view->setPlayerHighlight(true);
@@ -344,6 +345,8 @@ namespace Player
 	void PlayerController::decreasePlayerLive()
 	{
 		PlayerModel::player_lives -= 1;
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::PLAYER_DAMAGE);
+
 		if (PlayerModel::player_lives <= 0)
 		{
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::EXPLOSION);
@@ -351,4 +354,8 @@ namespace Player
 		}
 	}
 
+	 bool PlayerController::isShieldEnabled()
+	{
+		 return player_model->isShieldEnabled();
+	}
 }

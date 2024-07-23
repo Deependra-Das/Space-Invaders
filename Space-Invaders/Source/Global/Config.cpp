@@ -30,6 +30,7 @@ namespace Global
 
 	const sf::String Config::outscal_bomb_texture_path = "assets/textures/outscal_bomb.png";
 
+	const sf::String Config::player_shield_texture_path = "assets/textures/player_shield.png";
 
 	const sf::String Config::play_button_texture_path = "assets/textures/button_play.png";
 
@@ -76,6 +77,12 @@ namespace Global
 	const sf::String Config::powerup_disabled_sound_path = "assets/sounds/powerup_disabled.ogg";
 
 	const sf::String Config::powerup_enabled_sound_path = "assets/sounds/powerup_enabled.ogg";
+
+	const sf::String Config::player_damage_sound_path = "assets/sounds/player_damage.wav";
+
+	const sf::String Config::frozen_sound_path = "assets/sounds/frozen.wav";
+
+	const sf::String Config::o_bomb_explosion_sound_path = "assets/sounds/o_bomb_explosion.wav";
 }
 
 

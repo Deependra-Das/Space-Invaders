@@ -43,6 +43,18 @@ namespace Sound
 		{
 			printf("Error loading sound file.");
 		}
+		if (!player_damage_taken.loadFromFile(Config::player_damage_sound_path))
+		{
+			printf("Error loading sound file.");
+		}
+		if (!player_frozen.loadFromFile(Config::frozen_sound_path))
+		{
+			printf("Error loading sound file.");
+		}
+		if (!o_bomb_explosion.loadFromFile(Config::o_bomb_explosion_sound_path))
+		{
+			printf("Error loading sound file.");
+		}
 			
 	}
 
@@ -68,6 +80,18 @@ namespace Sound
 
 		case SoundType::POWERUP_DISABLED:
 			sound_effect.setBuffer(buffer_power_disabled);
+			break;
+
+		case SoundType::PLAYER_DAMAGE:
+			sound_effect.setBuffer(player_damage_taken);
+			break;
+
+		case SoundType::FROZEN:
+			sound_effect.setBuffer(player_frozen);
+			break;
+
+		case SoundType::O_BOMB_EXPLOSION:
+			sound_effect.setBuffer(o_bomb_explosion);
 			break;
 
 		default:
